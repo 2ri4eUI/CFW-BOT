@@ -9,6 +9,7 @@ Cloudflare Woker Bot ! No servers needed, just pure Xray link creation, all runn
   - [ADVANCE INSTALL](#advanced-install)
   - [How To Use the Bot](#how-to-use-the-bot)
 - [Note](#note)
+- [Disclaimer](#disclaimer)
 
 # What is this ?
 This Python Telegram bot, powered by Cloudflare's Workers, makes generating Xray links a breeze! No need for complex server setups, just follow these simple steps to get started:
@@ -117,3 +118,10 @@ Creating a new user is a straightforward process. Follow these steps to get star
 This bot is designed to be lightweight and inexpensive to run, making it accessible for everyone. Enjoy creating Xray links hassle-free!
 
 ![1](https://github.com/2ri4eUI/CFW-BOT/assets/139592104/a2ff80e6-3c33-4443-9ee5-85b445e4a9f6)
+
+## Disclaimer
+
+I want to acknowledge the work of others and clarify that the `index.js` file is not my original work. It has been edited solely to ensure compatibility with the bot. 
+
+This project is just the beginning, and there is potential for it to evolve further. The extent to which it progresses depends on how much it is liked and used. Your feedback and contributions are appreciated!
+
