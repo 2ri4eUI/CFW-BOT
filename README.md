@@ -115,4 +115,5 @@ Creating a new user is a straightforward process. Follow these steps to get star
 
 ## Note
 This bot is designed to be lightweight and inexpensive to run, making it accessible for everyone. Enjoy creating Xray links hassle-free!
+
 ![1](https://github.com/2ri4eUI/CFW-BOT/assets/139592104/a2ff80e6-3c33-4443-9ee5-85b445e4a9f6)
