@@ -41,55 +41,55 @@ This Python Telegram bot, powered by Cloudflare's Workers, makes generating Xray
    - Cloudflare Account id, you can find it from right side of overview page or worker page in cloudflare
 4. in your Dashboard section Select Files and and Click on "Open Bash Console Here"
 5.  Clone this repository:
-   ```bash
-   git clone https://github.com/2ri4eUI/CFW-BOT.git
-  ```
+ ```bash
+ git clone https://github.com/2ri4eUI/CFW-BOT.git
+```
 6. Navigate to the project directory:
 
-   ```bash
-   cd CFW-BOT
-   ```
+ ```bash
+ cd CFW-BOT
+ ```
 7. Make `requirement.sh` executable:
-   ```bash
-   chmod +x requirement.sh
-   ```
+ ```bash
+ chmod +x requirement.sh
+ ```
 
 8. Run `requirement.sh`:
-   ```bash
-   ./requirement.sh
-   ```
+ ```bash
+ ./requirement.sh
+ ```
 "If you encounter errors running requirement.sh on PythonAnywhere right after creating your account, simply close the console, wait for 15 minutes, then reopen the console and try running requirement.sh again. If the issue persists, try editing the script using nano requirement.sh, exit without making any changes, and rerun the script."
 
 10. Run `install.py` and provide the required API tokens when prompted:
-   ```bash
-   python3 install.py
-   ```
+ ```bash
+ python3 install.py
+ ```
 11. Start the bot:
-   ```bash
-   python3 cfw.py
-   ```
+ ```bash
+ python3 cfw.py
+ ```
 ## ADVANCED INSTALL
 
 1. install requirements:
-   ```bash
-   pip install telebot
-   pip install pytelegrambotapi --upgrade
-   pip install qrcode[pil]
-   pip install requests
-   pip install python-dotenv
-   ```
+ ```bash
+ pip install telebot
+ pip install pytelegrambotapi --upgrade
+ pip install qrcode[pil]
+ pip install requests
+ pip install python-dotenv
+ ```
 2. install NVM
-  ```bash
+```bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 ```
 3. set nvm settings
-  ``` bash
+``` bash
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads NVM
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads NVM bash completion
 ```
 4. start nvm and install wrangler
-  ```bash
+```bash
 nvm use 16.17.0
 npm install wrangler@latest
 npx wrangler --version
@@ -113,10 +113,10 @@ Creating a new user is a straightforward process. Follow these steps to get star
 **Obtain Cloudflare IP or Domain:**
    - Use platforms like [fofa.info](https://fofa.info) to find Cloudflare IP addresses or domains.
    - Example search query for fofa.info:
-     ```bash
-     
-     server=="cloudflare" && port=="443" && country=="NL" && city=="Amsterdam"
-     ```
+ ```bash
+ 
+ server=="cloudflare" && port=="443" && country=="NL" && city=="Amsterdam"
+ ```
    - Choose based on your preferences and network speed.
 
 ## Note
