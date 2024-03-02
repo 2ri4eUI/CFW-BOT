@@ -90,6 +90,7 @@ export NVM_DIR="$HOME/.nvm"
 ```
 4. start nvm and install wrangler
 ```bash
+nvm install 16.17.0
 nvm use 16.17.0
 npm install wrangler@latest
 npx wrangler --version
