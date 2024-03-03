@@ -398,14 +398,16 @@ def replace_proxy_ip_in_file(proxy_ip, file_path):
         file.write(modified_contents)
 
 
-try:
-    print("✅ CFW BOT STARTED ✅\n ✌️ RISE UP AND FIGHT FOR FREEDOM ✌️")
+def start_bot():
+    while True:
+        try:
+            bot.polling(none_stop=True)
+        except Exception as e:
+            print(f"An error occurred: {e}")
+            time.sleep(10)
 
-    bot.polling()
-except telebot.apihelper.ApiTelegramException as e:
-    if e.result_json['error_code'] == 429:
-        print(f"API rate limit exceeded. Retry after {e.result_json['parameters']['retry_after']} seconds.")
-    else:
-        print(f"Telegram API request failed: {e}")
-except Exception as e:
-    print(f"An error occurred: {e}")
+
+if __name__ == "__main__":
+    print("✅ CFW BOT STARTED ✅\n ✌️ RISE UP AND FIGHT FOR FREEDOM ✌️")
+    start_bot()
+
