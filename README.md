@@ -58,7 +58,7 @@ This Python Telegram bot, powered by Cloudflare's Workers, makes generating Xray
  ```bash
  ./requirement.sh
  ```
-"If you encounter errors running requirement.sh on PythonAnywhere right after creating your account, simply close the console, wait for 15 minutes, then reopen the console and try running requirement.sh again. If the issue persists, try editing the script using nano requirement.sh, exit without making any changes, and rerun the script."
+"If you encounter errors running requirement.sh on PythonAnywhere , simply close the console (using `exit` command) , go to file manager and open it and  save it (use `ctrl+s` ) without changing any thing. thats it! now you can run it"
 
 10. Run `install.py` and provide the required API tokens when prompted:
  ```bash
