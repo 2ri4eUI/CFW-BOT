@@ -4,6 +4,8 @@
 ربات ورکر کلادفلر! بدون نیاز به سرور، به راحتی میتونید هر تعداد کانفیگ Xray بسازید،  به راحتی در PythonAnywhere اجرا می شود. یک مسیرکوتاه به آزادی اینترنت! ✨
 
 ![1](https://github.com/2ri4eUI/CFW-BOT/assets/139592104/a2ff80e6-3c33-4443-9ee5-85b445e4a9f6)
+## آموزش در یوتیوب : 
+[![YouTube Video](https://img.youtube.com/vi/ejgTbf_yJJQ/0.jpg)](https://www.youtube.com/watch?v=ejgTbf_yJJQ)
 
 ## فهرست مطالب
 - [این چیه؟](#این-چیه؟)
