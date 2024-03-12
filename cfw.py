@@ -12,7 +12,7 @@ from io import BytesIO
 from dotenv import load_dotenv
 
 load_dotenv()
-
+ip_api = os.getenv('IP_API')
 bot_token = os.getenv('BOT_TOKEN')
 account_id = os.getenv('ACCOUNT_ID')
 api_token = os.getenv('CLOUDFLARE_API_TOKEN')
@@ -21,7 +21,9 @@ bot = telebot.TeleBot(bot_token)
 user_states = {}
 users_directory = 'users'
 index_js_path = 'index.js'
+subs_js_path = 'subworker.js'
 db_path = 'cfw.db'
+INPUT_NEW_API = 0
 
 @bot.message_handler(commands=['start'])
 def authorize(message):
@@ -40,17 +42,55 @@ def send_welcome(message):
     menu_markup = InlineKeyboardMarkup()
     add_user_button = InlineKeyboardButton("➕ Add User", callback_data="add_user")
     user_panel_button = InlineKeyboardButton("🔰 Users Panel", callback_data="user_panel")
-    menu_markup.add(add_user_button, user_panel_button)
-    
+    subscriptions_button = InlineKeyboardButton("📋 Subscriptions ips", callback_data="subscriptions") 
+    menu_markup.add(add_user_button, user_panel_button)  
+    menu_markup.add(subscriptions_button)  
     welcome_message = "Welcome to C-F-W Bot!\n ✌️ RISE AND FIGHT FOR FREEDOM ✌️ !\n "
     
     bot.send_message(message.chat.id, welcome_message, reply_markup=menu_markup)
 
+@bot.callback_query_handler(func=lambda call: call.data == 'subscriptions')
+def subscriptions(call):
+    load_dotenv()
+    ip_api = os.getenv('IP_API')
+    bot.delete_message(call.message.chat.id, call.message.message_id)
+    message_text = f"The value of IP_API is: {ip_api}"
+
+    keyboard = [
+        [InlineKeyboardButton("Change", callback_data="change_ip_api"),
+         InlineKeyboardButton("Keep", callback_data="keep_ip_api")]
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+
+    bot.send_message(call.message.chat.id, message_text, reply_markup=reply_markup)
+
+@bot.callback_query_handler(func=lambda call: call.data == 'change_ip_api')
+def subscriptions(call):
+    bot.delete_message(call.message.chat.id, call.message.message_id)
+    user_states[call.from_user.id] = 'waiting_for_api'
+    message_text = "Please provide the new value for IP_API."
+
+    bot.send_message(call.message.chat.id, message_text)
+
+@bot.callback_query_handler(func=lambda call: call.data == 'keep_ip_api')
+def keep_ip_api(call):
+    bot.delete_message(call.message.chat.id, call.message.message_id)
+    send_welcome(call.message)
+    
+@bot.message_handler(func=lambda message: user_states.get(message.from_user.id) == 'waiting_for_api')
+def handle_new_api_value(message):
+    new_api_value = message.text.strip()
+    os.environ['IP_API'] = new_api_value
+    user_states[message.from_user.id] = None
+    bot.send_message(message.chat.id, f"IP_API has been updated to: {new_api_value}")
+    send_welcome(message)
+    
 
 @bot.callback_query_handler(func=lambda call: call.data == 'return')
 def return_to_start(call):
     send_welcome(call.message)
     bot.delete_message(call.message.chat.id, call.message.message_id)
+
 @bot.callback_query_handler(func=lambda call: call.data.startswith('user_panel'))
 def user_panel_cfw(call):
     bot.delete_message(call.message.chat.id, call.message.message_id)
@@ -101,13 +141,14 @@ def user_info_callback(call):
         uuid, subdomain, ip = row[1], row[2], row[3]
 
         vless_link = create_vless_config(subdomain, uuid, user_name)
-
+        sub_link = f"https://sub{subdomain}/{user_name}"
         message_text = f"<b>🔰USER INFO🔰</b>\n\n"
         message_text += f"👤 <b>Name:</b> {user_name}\n"
         message_text += f"🔑 <b>UUID:</b> {uuid}\n"
         message_text += f"🌐 <b>IP:</b> {ip}\n"
         message_text += f"📡 <b>Subdomain:</b> {subdomain}\n\n"
-        message_text += f"🔗🔗: <code>{vless_link}</code>"
+        message_text += f"🔗🔗: <code>{vless_link}</code>\n\n"
+        message_text += f"📋: <code>{sub_link}</code>"
 
         keyboard = InlineKeyboardMarkup()
         delete_button = InlineKeyboardButton("🗑️ Delete", callback_data=f"delete:{user_name}")
@@ -184,6 +225,7 @@ def delete_user(call):
     user_panel_button = InlineKeyboardButton("🔰 User Panel", callback_data="user_panel")
     menu_markup.add(add_user_button, user_panel_button)
     bot.send_message(call.message.chat.id, f"✅ Worker for user '{user_name}' deleted successfully.✅", reply_markup=menu_markup)
+
 @bot.callback_query_handler(func=lambda call: call.data.startswith('add_user'))
 def add_user_cfw(call):
 
@@ -207,7 +249,7 @@ def handle_filename(message):
 
     new_file_name = message.text.strip() + ".js"
     new_file_name_without_extension = new_file_name.replace('.js', '')
-
+    new_subfile_name = new_file_name_without_extension + "_sub.js"
     if not os.path.exists(users_directory):
         os.makedirs(users_directory)
     connection = sqlite3.connect(db_path)
@@ -220,12 +262,15 @@ def handle_filename(message):
         bot.send_message(message.chat.id, "User already exists with this name. Please enter a different name.")
     else:
         new_file_path = os.path.join(users_directory, new_file_name)
-        
+        new_subsfile_path = os.path.join(users_directory, new_subfile_name)
         create_duplicate_file(index_js_path, new_file_path)
+        create_duplicate_file(subs_js_path, new_subsfile_path)
         bot.send_message(message.chat.id, f"user '{new_file_name}' created.✅")
         
         user_uuid = generate_uuid()
         replace_uuid_in_file(user_uuid, new_file_path)
+        replace_uuid_in_sub_file(user_uuid, new_subsfile_path)
+        replace_path_in_subfile(new_file_name_without_extension, new_subsfile_path)
         bot.send_message(message.chat.id, f"uuid of new user ➡️ {user_uuid}")
         connection = sqlite3.connect(db_path)
         cursor = connection.cursor()
@@ -254,6 +299,8 @@ def handle_proxy(message):
 
     new_txt_file_name = new_file_name.replace('.js', '.txt')
     create_duplicate_file('workertemp.txt', os.path.join(users_directory, new_txt_file_name))
+    new_txt_subfile_name = new_file_name.replace('.js', '_sub.txt')
+    create_duplicate_file('workertemp.txt', os.path.join(users_directory, new_txt_subfile_name))
     bot.send_message(message.chat.id, f"Duplicated 'workertemp.txt' as '{new_txt_file_name}' in 'users' directory.")
     new_file_name_without_extension = new_file_name.replace('.js', '')
     connection = sqlite3.connect(db_path)
@@ -285,22 +332,34 @@ def handle_subdomain_and_worker_name(message):
         
     else:
         new_file_name = user_states[message.from_user.id]['file_name']
-        user_uuid = user_states[message.from_user.id]['uuid']
+        new_file_name_without_extension = new_file_name.replace('.js', '')
 
+        user_uuid = user_states[message.from_user.id]['uuid']
+        new_file_path = os.path.join(users_directory, new_file_name)
+    
         new_txt_file_name = new_file_name.replace('.js', '.txt')
         new_txt_file_path = os.path.join(users_directory, new_txt_file_name)
-        
+        new_txt_subfile_name = new_file_name.replace('.js', '_sub.txt')
+        new_txt_subfile_path = os.path.join(users_directory, new_txt_subfile_name)
+        new_subfile_name = new_file_name_without_extension + "_sub.js"
+        new_subsfile_path = os.path.join(users_directory, new_subfile_name)
         replace_subdomain_in_file(new_subdomain, new_txt_file_path)
-        replace_name_in_file(new_txt_file_name, new_txt_file_path)
         
+        replace_subdomain_in_subfile(new_subdomain, new_subsfile_path)
+        replace_ip_api(ip_api, new_subsfile_path)
+        subworker_name = f"subworker{new_file_name_without_extension}"
+        replace_name_in_file(new_txt_file_name, new_txt_file_path)
+        replace_name_in_file(subworker_name, new_txt_subfile_path)
+
+        subworker_host = f"sub{new_subdomain}"
+        replace_subworker_host(subworker_host, new_file_path)
+        replace_subdomain_in_file(subworker_host, new_txt_subfile_path)
         bot.send_message(message.chat.id, f"🌐Uploading your new user using Wrangler...🌐\n ⌛ WAIT ~ 30s-1m ⌛")
         
         update_wrangler_toml(new_txt_file_path)
         sent_message = bot.send_message(message.chat.id, "⌛")
         wait_message_id = sent_message.message_id
 
-
-        new_file_name_without_extension = new_file_name.replace('.js', '')
         
         connection = sqlite3.connect(db_path)
         cursor = connection.cursor()
@@ -315,14 +374,20 @@ def handle_subdomain_and_worker_name(message):
         
         if deployment_status:
             bot.delete_message(message.chat.id, wait_message_id)
-            bot.send_message(message.chat.id, "✅✅ Worker Deployment successful!✅✅")
+            bot.send_message(message.chat.id, "✅✅ Workers Deployment successful!✅✅")
+            update_wrangler_toml(new_txt_subfile_path)
+            run_nvm_use_and_wrangler_deploy(new_subsfile_path)
             vless_config = create_vless_config(new_subdomain, user_uuid, new_file_name)
+            sub_link = f"https://{subworker_host}/{new_file_name_without_extension}"
             vless_config_html = f"<code>{vless_config}</code>"
+            message_text = f"Config: {vless_config_html}\n\nSub link: {sub_link}"
             menu_markup = InlineKeyboardMarkup()
             add_user_button = InlineKeyboardButton("➕ Add User", callback_data="add_user")
             user_panel_button = InlineKeyboardButton("🔰 User Panel", callback_data="user_panel")
             menu_markup.add(add_user_button, user_panel_button)
-            bot.send_message(message.chat.id, vless_config_html, reply_markup=menu_markup, parse_mode="HTML")
+            bot.send_message(message.chat.id, message_text, reply_markup=menu_markup, parse_mode="HTML")
+            del user_states[message.from_user.id]
+
         else:
             bot.delete_message(message.chat.id, wait_message_id)
             menu_markup = InlineKeyboardMarkup()
@@ -358,11 +423,33 @@ def update_wrangler_toml(new_txt_file_path):
     with open(wrangler_toml_path, 'w') as file:
         file.write(new_txt_content)
 
+
 def replace_name_in_file(name, file_path):
     with open(file_path, 'r') as file:
         file_contents = file.read()
     name_without_extension = name.replace('.txt', '')  
     modified_contents = file_contents.replace('name = "nameofworker"', f'name = "{name_without_extension}"')
+    with open(file_path, 'w') as file:
+        file.write(modified_contents)
+
+def replace_path_in_subfile(path, file_path):
+    with open(file_path, 'r') as file:
+        file_contents = file.read()
+    modified_contents = file_contents.replace("let mytoken= 'username';", f"let mytoken= '{path}';")
+    with open(file_path, 'w') as file:
+        file.write(modified_contents)
+
+def replace_ip_api(ip_api, file_path):
+    with open(file_path, 'r') as file:
+        file_contents = file.read()
+    modified_contents = file_contents.replace("let addressesapi = ['addressapi'];", f"let addressesapi = ['{ip_api}'];")
+    with open(file_path, 'w') as file:
+        file.write(modified_contents)
+
+def replace_subdomain_in_subfile(subdomain, file_path):
+    with open(file_path, 'r') as file:
+        file_contents = file.read()
+    modified_contents = file_contents.replace("host = env.HOST || 'usersubdomain';", f"host = env.HOST || '{subdomain}';")
     with open(file_path, 'w') as file:
         file.write(modified_contents)
 
@@ -383,6 +470,20 @@ def generate_uuid():
     user_uuid = uuid.uuid4()
     return str(user_uuid)
 
+def replace_uuid_in_sub_file(uuid, file_path):
+    with open(file_path, 'r') as file:
+        file_contents = file.read()
+    modified_contents = file_contents.replace("uuid = env.UUID || 'uuid';", f"uuid = env.UUID || '{uuid}';")
+    with open(file_path, 'w') as file:
+        file.write(modified_contents)
+        
+def replace_subworker_host(workerhost, file_path):
+    with open(file_path, 'r') as file:
+        file_contents = file.read()
+    modified_contents = file_contents.replace("let sub = 'subworkerhost';", f"let sub = '{workerhost}';")
+    with open(file_path, 'w') as file:
+        file.write(modified_contents)
+
 def replace_uuid_in_file(uuid, file_path):
     with open(file_path, 'r') as file:
         file_contents = file.read()
@@ -397,17 +498,23 @@ def replace_proxy_ip_in_file(proxy_ip, file_path):
     with open(file_path, 'w') as file:
         file.write(modified_contents)
 
-
+# def start_bot():
+#     bot.polling(none_stop=False)
+#     #         except KeyboardInterrupt:
+# #             print("\nBot has been stopped.")
+# #             break
+        
 def start_bot():
     while True:
         try:
             bot.polling(none_stop=True)
+        except KeyboardInterrupt:
+            print("\nBot has been stopped.")
+            break
         except Exception as e:
             print(f"An error occurred: {e}")
             time.sleep(10)
 
-
 if __name__ == "__main__":
     print("✅ CFW BOT STARTED ✅\n ✌️ RISE UP AND FIGHT FOR FREEDOM ✌️")
     start_bot()
-
