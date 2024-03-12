@@ -6,6 +6,11 @@ Cloudflare Woker Bot ! No servers needed, just pure Xray link creation, all runn
 
 ![1](https://github.com/2ri4eUI/CFW-BOT/assets/139592104/a2ff80e6-3c33-4443-9ee5-85b445e4a9f6)
 
+# version 0.02 | What is new ?
+- it can create unique subscription worker link for each user that can use IP-API value
+- subscription can be updated just by changing the IP_API value
+- cloudflare webiste error solved
+  
 ## Table of Contents
 - [What is this ?](#what-is-this-)
   - [Features](#features)
@@ -59,7 +64,12 @@ This Python Telegram bot, powered by Cloudflare's Workers, makes generating Xray
  ./requirement.sh
  ```
 "If you encounter errors running requirement.sh on PythonAnywhere , simply close the console (using `exit` command) , go to file manager and open it and  save it (use `ctrl+s` ) without changing any thing. thats it! now you can run it"
-
+another solution is converting it using dos2unix 
+since PythonAnyWhere does not support that you can use this simple python code 'dos2unix.py'
+you can run this to solve the issue:
+ ```bash
+ python3 dos2unix.py
+ ```
 10. Run `install.py` and provide the required API tokens when prompted:
  ```bash
  python3 install.py
@@ -104,6 +114,7 @@ npx wrangler --version
 | BOT_TOKEN            | Telegram bot token obtained from BotFather             |
 | ACCOUNT_ID           | Cloudflare account ID                                  |
 | ADMIN_USER_ID        | Numeric Telegram user ID for admin authentication      |
+| IP_API               | use this as refrence https://raw.githubusercontent.com/2ri4eUI/CFW_Worker_Sub/main/ips.txt|
 
 6.remember to set cloudflare account id in workertemp.txt 
 
