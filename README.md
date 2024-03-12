@@ -140,7 +140,7 @@ This bot is designed to be lightweight and inexpensive to run, making it accessi
 I want to acknowledge the work of others and clarify that the `index.js` and `subworker.js` file is not my original work. It has been edited solely to ensure compatibility with the bot. 
 
 ## HUGE THANKS TO 
-https://github.com/cmliu for creatin this workers
+https://github.com/cmliu for creating these workers
 
 This project is just the beginning, and there is potential for it to evolve further. The extent to which it progresses depends on how much it is liked and used. Your feedback and contributions are appreciated!
 
