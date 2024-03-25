@@ -141,13 +141,15 @@ def user_info_callback(call):
         uuid, subdomain, ip = row[1], row[2], row[3]
 
         vless_link = create_vless_config(subdomain, uuid, user_name)
+        nontls_config = create_nontls_config(subdomain, uuid, user_name)
         sub_link = f"https://sub{subdomain}/{user_name}"
         message_text = f"<b>🔰USER INFO🔰</b>\n\n"
         message_text += f"👤 <b>Name:</b> {user_name}\n"
         message_text += f"🔑 <b>UUID:</b> {uuid}\n"
         message_text += f"🌐 <b>IP:</b> {ip}\n"
         message_text += f"📡 <b>Subdomain:</b> {subdomain}\n\n"
-        message_text += f"🔗🔗: <code>{vless_link}</code>\n\n"
+        message_text += f"🔗tls: <code>{vless_link}</code>\n\n"
+        message_text += f"🔗notls: <code>{nontls_config}</code>\n\n"
         message_text += f"📋: <code>{sub_link}</code>"
 
         keyboard = InlineKeyboardMarkup()
@@ -159,6 +161,7 @@ def user_info_callback(call):
         bot.send_message(call.message.chat.id, message_text, reply_markup=keyboard, parse_mode="HTML")
     else:
         bot.send_message(call.message.chat.id, "❌ User not found.❌")
+
 
 def delete_worker(account_id, api_token, worker_name):
     url = f"https://api.cloudflare.com/client/v4/accounts/{account_id}/workers/scripts/{worker_name}"
@@ -378,9 +381,11 @@ def handle_subdomain_and_worker_name(message):
             update_wrangler_toml(new_txt_subfile_path)
             run_nvm_use_and_wrangler_deploy(new_subsfile_path)
             vless_config = create_vless_config(new_subdomain, user_uuid, new_file_name)
+            nontls_config = create_nontls_config(new_subdomain, user_uuid, new_file_name)
             sub_link = f"https://{subworker_host}/{new_file_name_without_extension}"
+            non_tls_config_html = f"<code>{nontls_config}</code>"
             vless_config_html = f"<code>{vless_config}</code>"
-            message_text = f"Config: {vless_config_html}\n\nSub link: {sub_link}"
+            message_text = f"Config: {vless_config_html}\n\n NoTls: {non_tls_config_html}\n\n Sub link: {sub_link}"
             menu_markup = InlineKeyboardMarkup()
             add_user_button = InlineKeyboardButton("➕ Add User", callback_data="add_user")
             user_panel_button = InlineKeyboardButton("🔰 User Panel", callback_data="user_panel")
@@ -398,10 +403,17 @@ def handle_subdomain_and_worker_name(message):
 
 def create_vless_config(new_subdomain, user_uuid, new_file_name):
     if new_file_name.endswith('.js'):
-        new_file_name = new_file_name[:-3]  
-    
+        new_file_name = new_file_name[:-3]
+
     vless_config = f"vless://{user_uuid}@{new_subdomain}:443?encryption=none&security=tls&sni={new_subdomain}&fp=randomized&type=ws&host={new_subdomain}&path=%2F%3Fed%3D2048#{new_file_name}"
     return vless_config
+
+def create_nontls_config(new_subdomain, user_uuid, new_file_name):
+    if new_file_name.endswith('.js'):
+        new_file_name = new_file_name[:-3]
+
+    nontls_config = f"vless://{user_uuid}@{new_subdomain}:443?encryption=none&security=&sni={new_subdomain}&fp=randomized&type=ws&host={new_subdomain}&path=%2F%3Fed%3D2048#{new_file_name}"
+    return nontls_config
 
 def run_nvm_use_and_wrangler_deploy(new_file_path):
     nvm_source_command = 'source ~/.nvm/nvm.sh && '
