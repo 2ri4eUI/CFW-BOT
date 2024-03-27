@@ -887,9 +887,14 @@ def replace_path_in_subfile(path, file_path):
         file.write(modified_contents)
 
 def replace_ip_api(ip_api, file_path):
+    with open('.env', 'r') as env_file:
+        for line in env_file:
+            if line.startswith('IP_API='):
+                env_ip_api = line.strip().split('=')[1].strip("'")
+
     with open(file_path, 'r') as file:
         file_contents = file.read()
-    modified_contents = file_contents.replace("let addressesapi = ['addressapi'];", f"let addressesapi = ['{ip_api}'];")
+    modified_contents = file_contents.replace(f"let addressesapi = ['addressapi'];", f"let addressesapi = ['{env_ip_api}'];")
     with open(file_path, 'w') as file:
         file.write(modified_contents)
 
