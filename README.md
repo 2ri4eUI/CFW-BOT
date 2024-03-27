@@ -47,7 +47,13 @@ This Python Telegram bot, powered by Cloudflare's Workers, makes generating Xray
 - Cloudflare API key (generate one from Cloudflare dashboard)
 - Account ID of your Cloudflare account
 - User ID of the Telegram account you want to use the bot on (for authentication)
+## Single Command install | BETA 
+i will release the final version soon!
+just copy and run and send tokens when it ask for them :
 
+```bash
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/2ri4eUI/CFW-BOT/main/install.sh)"
+```
 ## LAZY INSTALL
 1. Register for a free account on [PythonAnywhere](https://www.pythonanywhere.com).
 2. Obtain the required API keys:
