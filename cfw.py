@@ -121,11 +121,23 @@ def keep_ip_api(call):
 @bot.message_handler(func=lambda message: user_states.get(message.from_user.id) == 'waiting_for_api')
 def handle_new_api_value(message):
     new_api_value = message.text.strip()
+
+    env_lines = []
+    with open('.env', 'r') as env_file:
+        env_lines = env_file.readlines()
+
+    env_lines = [line for line in env_lines if not line.startswith('IP_API=')]
+
+    env_lines.append(f"IP_API='{new_api_value}'\n")
+
+    with open('.env', 'w') as env_file:
+        env_file.writelines(env_lines)
+
     os.environ['IP_API'] = new_api_value
+
     user_states[message.from_user.id] = None
-    bot.send_message(message.chat.id, f"IP_API has been updated to: {new_api_value}")
+    bot.send_message(message.chat.id, f"IP_API has been updated to: '{new_api_value}'")
     send_welcome(message)
-    
 
 @bot.callback_query_handler(func=lambda call: call.data == 'return')
 def return_to_start(call):
