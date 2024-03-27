@@ -1,15 +1,26 @@
 [فارسی](https://github.com/2ri4eUI/CFW-BOT/blob/main/README-FA.md) 
 [ENGLISH](https://github.com/2ri4eUI/CFW-BOT/blob/main/README.md)
 
-# CFW-BOT
+# CFW-BOT V0.03
 Cloudflare Woker Bot ! No servers needed, just pure Xray link creation, all running smoothly on PythonAnywhere. a Shortcut to internet freedom! ✨"
 
-![1](https://github.com/2ri4eUI/CFW-BOT/assets/139592104/a2ff80e6-3c33-4443-9ee5-85b445e4a9f6)
+![image](https://github.com/2ri4eUI/CFW-BOT/assets/139592104/c751fbf4-ebce-441e-aca9-ce121f27d258)
+
 
 # version 0.02 | What is new ?
 - it can create unique subscription worker link for each user that can use IP-API value
 - subscription can be updated just by changing the IP_API value
 - cloudflare webiste error solved
+
+# version 0.03 | What is NEW?
+- added proxies.txt , now you can create your favorite proxy list in bot
+- access to your favorite proxy while adding new user or changing users proxies
+- access to recently used proxies
+- redeploy your worker script with new proxy that you set
+- you can change all users proxies at once !
+- no tls configurate added
+- bug fixed : now delete subscripton worker when you delete a user
+  
   
 ## Table of Contents
 - [What is this ?](#what-is-this-)
