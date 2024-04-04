@@ -1,7 +1,7 @@
 [فارسی](https://github.com/2ri4eUI/CFW-BOT/blob/main/README-FA.md) 
 [ENGLISH](https://github.com/2ri4eUI/CFW-BOT/blob/main/README.md)
 
-# CFW-BOT V0.03
+# CFW-BOT V0.04
 Cloudflare Woker Bot ! No servers needed, just pure Xray link creation, all running smoothly on PythonAnywhere. a Shortcut to internet freedom! ✨"
 
 ![image](https://github.com/2ri4eUI/CFW-BOT/assets/139592104/c751fbf4-ebce-441e-aca9-ce121f27d258)
@@ -20,7 +20,15 @@ Cloudflare Woker Bot ! No servers needed, just pure Xray link creation, all runn
 - you can change all users proxies at once !
 - no tls configurate added
 - bug fixed : now delete subscripton worker when you delete a user
-  
+
+# version 0.04 |what is NEW?
+- added SingBox Subscription Link
+- added Cloudflare page redirect
+- added Wiki - every thing you need to know about the bot !
+- added button that show current subdomain of worker and button to change that in cloudflare
+- added CF Proxy button, which show content of Proxies.txt as button when creating a user or changing user proxy
+- added redeploy option for users, which can upload your worker with new proxy.
+- minor bug fix
   
 ## Table of Contents
 - [What is this ?](#what-is-this-)
