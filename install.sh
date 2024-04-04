@@ -1,6 +1,6 @@
-#!/bin/bash
+v#!/bin/bash
 echo "cloning repo"
-git clone https://github.com/2ri4eUI/CFW-BOT.git
+git clone https://github.com/NiREvil/CFW-BOT.git
 cd CFW-BOT
 echo "installing requirments"
 chmod +x requirement.sh
