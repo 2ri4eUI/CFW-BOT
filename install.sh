@@ -1,4 +1,4 @@
-v#!/bin/bash
+#!/bin/bash
 echo "cloning repo"
 git clone https://github.com/NiREvil/CFW-BOT.git
 cd CFW-BOT
