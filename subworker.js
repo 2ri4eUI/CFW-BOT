@@ -26,7 +26,7 @@ let addressescsv = [
 ];
 
 let subconverter = "api.v1.mk"; //在线订阅转换后端，目前使用肥羊的订阅转换功能。支持自建psub 可自行搭建https://github.com/bulianglin/psub
-let subconfig = "https://raw.githubusercontent.com/cmliu/ACL4SSR/main/Clash/config/ACL4SSR_Online_Full_MultiMode.ini"; //订阅配置文件
+let subconfig = "https://raw.githubusercontent.com/2ri4eUI/CFW_Worker_Sub/main/ruleset.ini"; //订阅配置文件
 
 let link = '';
 let edgetunnel = 'ed';
@@ -189,7 +189,7 @@ export default {
 		if (mytoken !== '' && url.pathname.includes(mytoken)) {
 			host = env.HOST || 'usersubdomain';
 			uuid = env.UUID || 'uuid';
-			path = env.PATH || "/?ed=2048";
+			path = env.PATH || "/?ed=2560";
 			edgetunnel = env.ED || edgetunnel;
 			RproxyIP = env.RPROXYIP || RproxyIP;
 
@@ -265,7 +265,7 @@ export default {
 			}
 			
 			if (!path || path.trim() === '') {
-				path = '/?ed=2048';
+				path = '/?ed=2560';
 			} else {
 				// 如果第一个字符不是斜杠，则在前面添加一个斜杠
 				path = (path[0] === '/') ? path : '/' + path;
@@ -274,7 +274,7 @@ export default {
 
 		if (userAgent.includes('telegram') || userAgent.includes('twitter') || userAgent.includes('miaoko')) {
 			return new Response('Hello World!');
-		} else if (userAgent.includes('clash') || (format === 'clash' && !userAgent.includes('subconverter'))) {
+		} else if ((userAgent.includes('clash') || (format === 'clash' && !userAgent.includes('subconverter'))) && !userAgent.includes('nekobox')) {
 			const subconverterUrl = `https://${subconverter}/sub?target=clash&url=${encodeURIComponent(request.url)}&insert=false&config=${encodeURIComponent(subconfig)}&emoji=true&list=false&tfo=false&scv=true&fdn=false&sort=false&new_name=true`;
 
 			try {
@@ -410,10 +410,10 @@ export default {
 				let 伪装域名 = host ;
 				let 最终路径 = path ;
 				let 节点备注 = EndPS ;
-				if(proxyhosts && (host.includes('workers.dev') || host.includes('pages.dev'))) {
+				if(proxyhosts && (host.includes('.workers.dev') || host.includes('pages.dev'))) {
 					最终路径 = `/${host}${path}`;
 					伪装域名 = proxyhosts[Math.floor(Math.random() * proxyhosts.length)];
-					节点备注 = `${EndPS} 已启用临时域名中转服务，请尽快绑定自定义域！`;
+					节点备注 = `${EndPS} WD！`;
 				}
 				const vlessLink = `vless://${uuid}@${address}:${port}?encryption=none&security=tls&sni=${伪装域名}&fp=random&type=ws&host=${伪装域名}&path=${encodeURIComponent(最终路径)}#${encodeURIComponent(addressid + 节点备注)}`;
 			
