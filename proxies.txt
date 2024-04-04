@@ -1,0 +1,9 @@
+23.162.136.169
+47.254.66.75
+proxyip.fxxk.dedyn.io
+cdn.xn--b6gac.eu.org
+cdn-all.xn--b6gac.eu.org
+cdn-b100.xn--b6gac.eu.org
+cdn.anycast.eu.org
+proxyip.multacom.fxxk.dedyn.io
+proxyip.vultr.fxxk.dedyn.io
