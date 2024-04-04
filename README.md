@@ -1,5 +1,5 @@
-[فارسی](https://github.com/2ri4eUI/CFW-BOT/blob/main/README-FA.md) 
-[ENGLISH](https://github.com/2ri4eUI/CFW-BOT/blob/main/README.md)
+[![Lang_farsi](https://user-images.githubusercontent.com/125398461/234186932-52f1fa82-52c6-417f-8b37-08fe9250a55f.png) فارسی](README-FA.md) 
+[ENGLISH](README.md)
 
 # CFW-BOT V0.04
 Cloudflare Woker Bot ! No servers needed, just pure Xray link creation, all running smoothly on PythonAnywhere. a Shortcut to internet freedom! ✨"
@@ -61,7 +61,7 @@ i will release the final version soon!
 just copy and run and send tokens when it ask for them :
 
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/2ri4eUI/CFW-BOT/main/install.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/NiREvil/CFW-BOT/main/install.sh)"
 ```
 ## LAZY INSTALL
 1. Register for a free account on [PythonAnywhere](https://www.pythonanywhere.com).
@@ -73,7 +73,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/2ri4eUI/CFW-BOT/main/ins
 4. in your Dashboard section Select Files and and Click on "Open Bash Console Here"
 5.  Clone this repository:
  ```bash
- git clone https://github.com/2ri4eUI/CFW-BOT.git
+ git clone https://github.com/NiREvil/CFW-BOT.git
 ```
 6. Navigate to the project directory:
 
@@ -146,16 +146,12 @@ npx wrangler --version
 
 
 ## How To Use the Bot
-Once the bot is running, simply send the necessary commands to generate Xray links right from your Telegram app!
-Creating a new user is a straightforward process. Follow these steps to get started:
-**Obtain Cloudflare IP or Domain:**
-   - Use platforms like [fofa.info](https://fofa.info) to find Cloudflare IP addresses or domains.
-   - Example search query for fofa.info:
- ```bash
- 
- server=="cloudflare" && port=="443" && country=="NL" && city=="Amsterdam"
- ```
-   - Choose based on your preferences and network speed.
+At this stage, you have two options for entering the IP address in the CFW-BOT:
+
+1- Using a Cloudflare clean IP: This type of IP will make you have good download speed and ping, but sites that use Cloudflare's CDN will not load for you. The method of finding a clean IP is explained here. [link to article](https://github.com/NiREvil/CFW-BOT/blob/main/CFW_Worker_Sub.md)
+
+2- Using a proxyIP: This type of IP may have about ten percent lower speed compared to Cloudflare IP's, and it may be filtered after one or two months, forcing you to change it. However, the advantage is that all sites, even those behind Cloudflare, open easily and without problems. I have written here an easy and fast way to find proxyIP. [link to article](https://github.com/NiREvil/vless/blob/main/sub/ProxyIP.md)
+
 
 ## Note
 This bot is designed to be lightweight and inexpensive to run, making it accessible for everyone. Enjoy creating Xray links hassle-free!
