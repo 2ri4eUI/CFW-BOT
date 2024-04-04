@@ -40,20 +40,62 @@ def authorize(message):
         bot.send_message(message.chat.id, unauthorized_message)
 
 
-def send_welcome(message):
 
+def send_welcome(message):
     menu_markup = InlineKeyboardMarkup()
     add_user_button = InlineKeyboardButton("➕ Add User", callback_data="add_user")
     user_panel_button = InlineKeyboardButton("🔰 Users Panel", callback_data="user_panel")
     subscriptions_button = InlineKeyboardButton("📋 Subscriptions ips", callback_data="subscriptions") 
-    proxy_txt_button = InlineKeyboardButton("📁CF Proxies", callback_data="proxy_list")
-    menu_markup.add(add_user_button, user_panel_button)  
-    menu_markup.add(subscriptions_button)
-    menu_markup.add(proxy_txt_button)
-    welcome_message = "Welcome to C-F-W Bot (v0.03)!\n ✌️ RISE AND FIGHT FOR FREEDOM ✌️ !\n "
+    proxy_txt_button = InlineKeyboardButton("📁 CF Proxies", callback_data="proxy_list")
+    wiki_button = InlineKeyboardButton("📚 Wiki", url="https://github.com/2ri4eUI/CFW-BOT/wiki")
+    worker_subdomain_button = InlineKeyboardButton("🌐Worker Subdomain🌐", callback_data="worker_subdomain")
+    worker_status_button = InlineKeyboardButton("📊 Workers Status", url=f"https://dash.cloudflare.com/{account_id}/workers-and-pages")
     
+    
+    menu_markup.row(add_user_button, user_panel_button)
+    menu_markup.row(subscriptions_button, proxy_txt_button)
+    menu_markup.row(worker_subdomain_button)
+    menu_markup.row(worker_status_button)
+    menu_markup.row(wiki_button)
+    
+    
+    welcome_message = """
+           　 🔰ＣＦＷ－ＢＯＴ🔰　ｖ０．０４　　
+　　　　　　２ｒｉ４ｅＵＩ
+
+    """
+
     bot.send_message(message.chat.id, welcome_message, reply_markup=menu_markup)
 
+@bot.callback_query_handler(func=lambda call: call.data == 'worker_subdomain')
+def worker_subdomain(call):
+    subdomains = get_subdomains()
+    if subdomains:
+        subdomain_message = f"Current Worker Subdomain ➡️ <code>{subdomains[0]}.workers.dev</code>\n\n for changing subdomain click on button below. \n ⚠️IT WILL DISABLE ALL OF CONFIG WITH CURRENT SUBDOMAIN⚠️"
+        keyboard = InlineKeyboardMarkup()
+        url_button = InlineKeyboardButton("✏️ Change Subdomain", url=f"https://dash.cloudflare.com/{account_id}/workers/subdomain")
+        keyboard.add(url_button)
+        bot.send_message(call.message.chat.id, subdomain_message, reply_markup=keyboard, parse_mode="HTML")
+    else:
+        bot.send_message(call.message.chat.id, "❌Failed to retrieve Worker Subdomain.❌")
+
+def get_subdomains():
+    headers = {
+        'Authorization': f'Bearer {api_token}',
+        'Content-Type': 'application/json'
+    }
+    url = f'https://api.cloudflare.com/client/v4/accounts/{account_id}/workers/subdomain'
+
+    response = requests.get(url, headers=headers)
+    
+    if response.status_code == 200:
+        data = response.json()
+        subdomains = [data['result']['subdomain']]
+        return subdomains
+    else:
+        print(f"Failed to retrieve subdomains. Status code: {response.status_code}")
+        return []
+    
 @bot.callback_query_handler(func=lambda call: call.data == 'proxy_list')
 def proxylist(call):
     bot.delete_message(call.message.chat.id, call.message.message_id)
@@ -204,23 +246,27 @@ def user_info_callback(call):
         vless_link = create_vless_config(subdomain, uuid, user_name)
         nontls_config = create_nontls_config(subdomain, uuid, user_name)
         sub_link = f"https://sub{subdomain}/{user_name}"
+        singbox_link = f"{sub_link}?format=singbox"
         message_text = f"<b>🔰USER INFO🔰</b>\n\n"
         message_text += f"👤 <b>Name:</b> {user_name}\n"
         message_text += f"🔑 <b>UUID:</b> {uuid}\n"
         message_text += f"🌐 <b>IP:</b> {ip}\n"
         message_text += f"📡 <b>Subdomain:</b> {subdomain}\n\n"
-        message_text += f"🔗tls: <code>{vless_link}</code>\n\n"
-        message_text += f"🔗notls: <code>{nontls_config}</code>\n\n"
-        message_text += f"📋: <code>{sub_link}</code>"
+        message_text += f"🔐tls: <code>{vless_link}</code>\n\n"
+        message_text += f"🔓notls: <code>{nontls_config}</code>\n\n"
+        message_text += f"📋V2ray: <code>{sub_link}</code>\n\n"
+        message_text += f"📋SingBox: <code>{singbox_link}</code>"
 
         keyboard = InlineKeyboardMarkup()
         delete_button = InlineKeyboardButton("🗑️ Delete", callback_data=f"delete:{user_name}")
         qr_button = InlineKeyboardButton("🔲 QR", callback_data=f"qr:{user_name}")
         redeploy_button = InlineKeyboardButton("🔄 Redeploy", callback_data=f"redeploy:{user_name}")
         change_proxy_button = InlineKeyboardButton("🆕 New Proxy", callback_data=f"newproxy:{user_name}")
+        worker_status_button = InlineKeyboardButton("🔧 Worker Status", url=f"https://dash.cloudflare.com/{account_id}/workers/services/view/{user_name}/production")
         return_button = InlineKeyboardButton("🔙 Return", callback_data="user_panel")
         keyboard.add(delete_button, qr_button)
         keyboard.add(change_proxy_button, redeploy_button)
+        keyboard.add(worker_status_button)
         keyboard.add(return_button)
 
         bot.send_message(call.message.chat.id, message_text, reply_markup=keyboard, parse_mode="HTML")
@@ -521,7 +567,7 @@ def qr_vless(call):
 
 @bot.callback_query_handler(func=lambda call: call.data.startswith('redeploy:'))
 def redeploy_user(call):
-    bot.delete_message(call.message.chat.id, call.message.message_id)
+    # bot.delete_message(call.message.chat.id, call.message.message_id)
 
     user_name = call.data.split(':')[1]
     bot.send_message(call.message.chat.id, f"🌐Redeployment of {user_name} started🌐")
@@ -559,7 +605,7 @@ def redeploy_user(call):
     update_wrangler_toml(new_txt_file_path)
 
     connection.close()
-    bot.send_message(call.message.chat.id, f"🌐Uploading your new user using Wrangler...🌐\n ⌛ WAIT ~ 30s-1m ⌛")
+    bot.send_message(call.message.chat.id, f"🌐ReDeploying {user_name_from_db} using Wrangler...🌐\n ⌛ WAIT ~ 30s-1m ⌛")
     sent_message = bot.send_message(call.message.chat.id, "⌛")
     wait_message_id = sent_message.message_id
     deployment_status = run_nvm_use_and_wrangler_deploy(new_file_path)
@@ -575,7 +621,9 @@ def redeploy_user(call):
             sub_link = f"https://{worker_subdomain}/{user_name_from_db}"
             non_tls_config_html = f"<code>{nontls_config}</code>"
             vless_config_html = f"<code>{vless_config}</code>"
-            message_text = f"Config: {vless_config_html}\n\n NoTls: {non_tls_config_html}\n\n Sub link: {sub_link}"
+            singbox_link = f"{sub_link}?format=singbox"
+            singbox_html = f"<code>{singbox_link}</code>"
+            message_text = f"🔐TLS: {vless_config_html}\n\n 🔓NoTls: {non_tls_config_html}\n\n V2ray Sub: {sub_link} \n\n Singbox Sub: {singbox_html}"
             menu_markup = InlineKeyboardMarkup()
             add_user_button = InlineKeyboardButton("➕ Add User", callback_data="add_user")
             user_panel_button = InlineKeyboardButton("🔰 User Panel", callback_data="user_panel")
@@ -681,10 +729,10 @@ def handle_filename(message):
             keyboard.add(InlineKeyboardButton(option, callback_data=f"selected_ip:{option}"))
 
         if options:
-            proxy_message = bot.send_message(message.chat.id, "Please select one of the following options or send a new Cloudflare Ip or Domain:", reply_markup=keyboard)
+            proxy_message = bot.send_message(message.chat.id, "Please select one of the following options or Send a new Cloudflare Ip or Domain:", reply_markup=keyboard)
             proxy_message_id = proxy_message.message_id
         else:
-            bot.send_message(message.chat.id, "There are no available options. Please enter a new option.")
+            bot.send_message(message.chat.id, "There are no available options. Please send a new Cloudflare Proxy Ip or Domain")
 
         user_states[message.from_user.id] = {'state': 'waiting_for_proxy', 'file_name':  new_file_name, 'uuid': user_uuid}
         return
@@ -723,7 +771,7 @@ def handle_proxy(message):
     connection.commit()
     connection.close()
     user_states[message.from_user.id]['state'] = 'waiting_for_subdomain_or_worker_name'
-    bot.send_message(message.chat.id, "Please enter the new subdomain for your worker: \n ℹ️ example: subdomain.yourdomain.com \n\n ℹ️ℹ️ DO NOT enter domain that you DO NOT HAVE !")    
+    bot.send_message(message.chat.id, "Please enter the new subdomain for your worker: \n ℹ️ example: subdomain.yourdomain.com \n\n or subdomain. ℹ️ℹ️ DO NOT enter domain that you DO NOT HAVE !")    
 
 @bot.callback_query_handler(func=lambda call: call.data.startswith('selected_ip:'))
 def handle_selected_ip(call):
@@ -745,8 +793,9 @@ def handle_selected_ip(call):
     cursor.execute('UPDATE user SET ip = ? WHERE name = ?', (selected_ip, new_file_name_without_extension))
     connection.commit()
     connection.close()
+    current_subdomains = get_subdomains()
     user_states[call.from_user.id]['state'] = 'waiting_for_subdomain_or_worker_name'
-    bot.send_message(call.message.chat.id, "Please enter the new subdomain for your worker: \n ℹ️ example: subdomain.yourdomain.com \n\n ℹ️ℹ️ DO NOT enter domain that you DO NOT HAVE !")
+    bot.send_message(call.message.chat.id, f"Please enter the new subdomain for your worker: \n ℹ️ example: subdomain.yourdomain.com \n\n or use your worker subdomain (subdomain.{current_subdomains[0]}.workers.dev)\n\n ℹ️ℹ️ DO NOT enter domain that you DO NOT HAVE !")
 
 @bot.message_handler(func=lambda message: user_states.get(message.from_user.id, {}).get('state') == 'waiting_for_subdomain_or_worker_name')
 def handle_subdomain_and_worker_name(message):
@@ -820,7 +869,9 @@ def handle_subdomain_and_worker_name(message):
             sub_link = f"https://{subworker_host}/{new_file_name_without_extension}"
             non_tls_config_html = f"<code>{nontls_config}</code>"
             vless_config_html = f"<code>{vless_config}</code>"
-            message_text = f"Config: {vless_config_html}\n\n NoTls: {non_tls_config_html}\n\n Sub link: {sub_link}"
+            singbox_link = f"{sub_link}?format=singbox"
+            singbox_html = f"<code>{singbox_link}</code>"
+            message_text = f"🔐TLS: {vless_config_html}\n\n 🔓NoTls: {non_tls_config_html}\n\n Sub link: {sub_link} \n\n Singbox Link: {singbox_html}"
             menu_markup = InlineKeyboardMarkup()
             add_user_button = InlineKeyboardButton("➕ Add User", callback_data="add_user")
             user_panel_button = InlineKeyboardButton("🔰 User Panel", callback_data="user_panel")
