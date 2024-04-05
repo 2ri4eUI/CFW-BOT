@@ -41,10 +41,11 @@ if [ -f "requirement.sh" ]; then
     echo -e " ${GREEN}${CHECK_MARK}${NC}"
 fi
 
+clear
 echo -e "${GREEN}${CHECK_MARK} Requirements installed Successfully! ${NC}"
 echo -e "${GREEN}${CHECK_MARK} Now You Can Add 1.CF API TOKEN 2.Telegram Bot Token 3.CF Account ID 4.Admin UserID${NC}"
 echo -e "${YELLOW}${WARNING} Pay Attention To Their Order ${NC}"
-echo -e "${YELLOW}${ARROW} Use CTRL+V to Paste ${NC}"
+echo -e "${YELLOW}${ARROW} Use CTRL+V to Paste ${ARROW}${NC}"
 
 python3 install.py
 
