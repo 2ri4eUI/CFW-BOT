@@ -12,12 +12,11 @@ ARROW='⬇️'
 DOOR='🚪'
 WALL='🧱'
 
-# Define ASCII art with color codes
 echo -e "${GREEN}┌──────────────────────────────┐${NC}"
-echo -e "${GREEN}│${NC}███ ███ █┼┼┼█ ┼┼ ██▄ ███ ███${GREEN}│${NC}"
-echo -e "${GREEN}│${NC}█┼┼ █▄┼ █┼█┼█ ┼┼ █▄█ █┼█ ┼█┼${GREEN}│${NC}"
-echo -e "${GREEN}│${NC}███ █┼┼ █▄█▄█ ┼┼ █▄█ █▄█ ┼█┼${GREEN}│${NC}"
-echo -e "${GREEN}│${NC}by 2ri4eUI${WALL}${DOOR}${WALL}${GREEN}│${NC}"
+echo -e "${GREEN}│${NC}███ ███ █┼┼┼█ ┼┼ ██▄ ███ ███${GREEN}${NC}"
+echo -e "${GREEN}│${NC}█┼┼ █▄┼ █┼█┼█ ┼┼ █▄█ █┼█ ┼█┼${GREEN}${NC}"
+echo -e "${GREEN}│${NC}███ █┼┼ █▄█▄█ ┼┼ █▄█ █▄█ ┼█┼${GREEN}${NC}"
+echo -e "${GREEN}│${NC}by 2ri4eUI${WALL}${DOOR}${WALL}${GREEN}${NC}"
 echo -e "${GREEN}└──────────────────────────────┘${NC}"
 
 echo -e "${YELLOW}Cloning CFW-BOT Repo ${NC}"
@@ -47,12 +46,12 @@ if [ -f "requirement.sh" ]; then
 fi
 
 clear
-echo -e "${GREEN}┌──────────────────────────┐${NC}"
-echo -e "${GREEN}│${NC}███ ███ █┼┼┼█ ┼┼ ██▄ ███ ███${GREEN}│${NC}"
-echo -e "${GREEN}│${NC}█┼┼ █▄┼ █┼█┼█ ┼┼ █▄█ █┼█ ┼█┼${GREEN}│${NC}"
-echo -e "${GREEN}│${NC}███ █┼┼ █▄█▄█ ┼┼ █▄█ █▄█ ┼█┼${GREEN}│${NC}"
-echo -e "${GREEN}│${NC}by 2ri4eUI                ${GREEN}│${NC}"
-echo -e "${GREEN}└──────────────────────────┘${NC}"
+echo -e "${GREEN}┌──────────────────────────────┐${NC}"
+echo -e "${GREEN}│${NC}███ ███ █┼┼┼█ ┼┼ ██▄ ███ ███${GREEN}${NC}"
+echo -e "${GREEN}│${NC}█┼┼ █▄┼ █┼█┼█ ┼┼ █▄█ █┼█ ┼█┼${GREEN}${NC}"
+echo -e "${GREEN}│${NC}███ █┼┼ █▄█▄█ ┼┼ █▄█ █▄█ ┼█┼${GREEN}${NC}"
+echo -e "${GREEN}│${NC}by 2ri4eUI${WALL}${DOOR}${WALL}${GREEN}${NC}"
+echo -e "${GREEN}└──────────────────────────────┘${NC}"
 
 echo -e "${GREEN}${CHECK_MARK} Requirements installed Successfully! ${NC}"
 echo -e "${GREEN}${CHECK_MARK} Now You Can Add 1.CF API TOKEN 2.Telegram Bot Token 3.CF Account ID 4.Admin UserID${NC}"
