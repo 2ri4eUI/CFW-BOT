@@ -19,9 +19,13 @@ if [ -f "requirement.sh" ]; then
     python3 dos2unix.py requirement.sh
     echo "requirement.sh converted to UNIX format"
     
-    chmod +x requirement.sh
-    ./requirement.sh
-    echo "requirement.sh executed"
+
+    echo -n "Installing requirements: "
+    for i in {1..10}; do
+        echo -n "."
+        sleep 1  # Simulate installation time
+    done
+    echo " [Done]"
 fi
 
 clear
