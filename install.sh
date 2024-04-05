@@ -9,13 +9,15 @@ CHECK_MARK='✅'
 WARNING='⚠️'
 ROCKET='🚀'
 ARROW='⬇️'
+DOOR='🚪'
+WALL='🧱'
 
 # Define ASCII art with color codes
 echo -e "${GREEN}┌──────────────────────────────┐${NC}"
 echo -e "${GREEN}│${NC}███ ███ █┼┼┼█ ┼┼ ██▄ ███ ███${GREEN}│${NC}"
 echo -e "${GREEN}│${NC}█┼┼ █▄┼ █┼█┼█ ┼┼ █▄█ █┼█ ┼█┼${GREEN}│${NC}"
 echo -e "${GREEN}│${NC}███ █┼┼ █▄█▄█ ┼┼ █▄█ █▄█ ┼█┼${GREEN}│${NC}"
-echo -e "${GREEN}│${NC}by 2ri4eUI                ${GREEN}│${NC}"
+echo -e "${GREEN}│${NC}by 2ri4eUI${WALL}${DOOR}${WALL}${GREEN}│${NC}"
 echo -e "${GREEN}└──────────────────────────────┘${NC}"
 
 echo -e "${YELLOW}Cloning CFW-BOT Repo ${NC}"
