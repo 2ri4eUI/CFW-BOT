@@ -8,13 +8,19 @@ NC='\033[0m'
 CHECK_MARK='✅'
 WARNING='⚠️'
 ROCKET='🚀'
+ARROW='⬇️'
 
-echo -e "${YELLOW}Cloning repo...${NC}"
+# Define ASCII art with color codes
+echo -e "${GREEN}███ ███ █┼┼┼█ ┼┼ ██▄ ███ ███${NC}"
+echo -e "${GREEN}█┼┼ █▄┼ █┼█┼█ ┼┼ █▄█ █┼█ ┼█┼${NC}"
+echo -e "${GREEN}███ █┼┼ █▄█▄█ ┼┼ █▄█ █▄█ ┼█┼${NC}"
+echo -e "${YELLOW}by 2ri4eUI${NC}"
+echo -e "${YELLOW}Cloning CFW-BOT Repo ${NC}"
 git clone https://github.com/2ri4eUI/CFW-BOT.git
 
 cd CFW-BOT
 
-echo -e "${YELLOW}Installing requirements...${NC}"
+echo -e "${YELLOW}Loading requirements...${NC}"
 
 if [ -f "dos2unix.py" ]; then
     python3 dos2unix.py
@@ -35,11 +41,14 @@ if [ -f "requirement.sh" ]; then
     echo -e " ${GREEN}${CHECK_MARK}${NC}"
 fi
 
-echo -e "${YELLOW}Now you can start adding your API tokens...${NC}"
+echo -e "${GREEN}${CHECK_MARK} Requirements installed Successfully! ${NC}"
+echo -e "${GREEN}${CHECK_MARK} Now You Can Add 1.CF API TOKEN 2.Telegram Bot Token 3.CF Account ID 4.Admin UserID${NC}"
+echo -e "${YELLOW}${WARNING} Pay Attention To Their Order ${NC}"
+echo -e "${YELLOW}${ARROW} Use CTRL+V to Paste ${NC}"
 
 python3 install.py
 
 echo -e "${GREEN}${ROCKET} Installation complete${NC}"
-echo -e "${GREEN}${ROCKET} Starting bot...${NC}"
+echo -e "${GREEN}${ROCKET} Starting CFW-BOT${NC}"
 
 python3 cfw.py
