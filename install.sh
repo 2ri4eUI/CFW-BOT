@@ -24,6 +24,7 @@ if [ -f "requirement.sh" ]; then
     echo "requirement.sh executed"
 fi
 
+clear
 echo "Now you can start adding your API tokens..."
 
 python3 install.py
