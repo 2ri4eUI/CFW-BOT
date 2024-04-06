@@ -1,8 +1,8 @@
 workers.cloudflare.cyou
-ircpipproxy.duckdns.org
+62.3.12.185
 23.90.144.167
 23.162.136.169
 47.254.66.75
-cdn.xn--b6gac.eu.org
 cdn-all.xn--b6gac.eu.org
-proxyip.fxxk.dedyn.io
+ircpipproxy.duckdns.org
+cdn.xn--b6gac.eu.org
