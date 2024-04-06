@@ -40,6 +40,7 @@ if [ -f "requirement.sh" ]; then
     echo -e "${YELLOW}Installing requirements: ${NC}\c"
     logfile="requirements.log"
     touch "$logfile"
+    sleep 5
     ./requirement.sh &> "$logfile" &
     while true; do
         if grep -q "Wrangler installed successfully." "$logfile"; then
