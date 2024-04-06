@@ -35,11 +35,12 @@ if [ -f "requirement.sh" ]; then
     python3 dos2unix.py requirement.sh
     echo -e "${GREEN}${CHECK_MARK} requirement.sh converted to UNIX format${NC}"
 
-    echo -e "${YELLOW}Installing requirements and log instalation: ${NC}\c"
-    tempfile="requirements.log"
-    ./requirement.sh &> "$tempfile" &
+    echo -e "${YELLOW}Installing requirements: ${NC}\c"
+    logfile="requirements.log"
+    touch "$logfile"
+    ./requirement.sh &> "$logfile" &
     while true; do
-        if grep -q "Wrangler installed successfully." "$tempfile"; then
+        if grep -q "Wrangler installed successfully." "$logfile"; then
             break
         fi
         echo -e -n "${GREEN}.${NC}"
