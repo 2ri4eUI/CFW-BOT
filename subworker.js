@@ -6,13 +6,13 @@ let mytoken= 'username';//快速订阅访问入口, 留空则不启动快速订�
 // 设置优选地址，不带端口号默认443，不支持非TLS订阅生成
 let addresses = [
 	"go.inmobi.com#CFW-BOT",
-	"creativecommons.org#2ri4eUI",
+	"creativecommons.org#CFW",
 	"go.inmobi.com:8443#CFW-BOT",
-	"creativecommons.org:8443#2ri4eUI",
+	"creativecommons.org:8443#CFW",
 	"go.inmobi.com:2087#CFW-BOT",
-	"creativecommons.org:2087#2ri4eUI",
+	"creativecommons.org:2087#CFW",
 	"go.inmobi.com:2096#CFW-BOT",
-	"creativecommons.org:2096#2ri4eUI",
+	"creativecommons.org:2096#CFW",
 	
 ];
 
@@ -26,7 +26,7 @@ let addressescsv = [
 ];
 
 let subconverter = "api.v1.mk"; //在线订阅转换后端，目前使用肥羊的订阅转换功能。支持自建psub 可自行搭建https://github.com/bulianglin/psub
-let subconfig = "https://raw.githubusercontent.com/2ri4eUI/CFW_Worker_Sub/main/ruleset.ini"; //订阅配置文件
+let subconfig = "https://raw.githubusercontent.com/NiREvil/workers-cloudflare/main/Other/ruleset.ini"; //订阅配置文件
 
 let link = '';
 let edgetunnel = 'ed';
@@ -413,7 +413,7 @@ export default {
 				if(proxyhosts && (host.includes('.workers.dev') || host.includes('pages.dev'))) {
 					最终路径 = `/${host}${path}`;
 					伪装域名 = proxyhosts[Math.floor(Math.random() * proxyhosts.length)];
-					节点备注 = `${EndPS} WD！`;
+					节点备注 = `${EndPS} NI `;
 				}
 				const vlessLink = `vless://${uuid}@${address}:${port}?encryption=none&security=tls&sni=${伪装域名}&fp=random&type=ws&host=${伪装域名}&path=${encodeURIComponent(最终路径)}#${encodeURIComponent(addressid + 节点备注)}`;
 			
