@@ -53,6 +53,11 @@ echo -e "${GREEN}│${NC}███ █┼┼ █▄█▄█ ┼┼ █▄█ �
 echo -e "${GREEN}│${NC}For Freedom${WALL}${DOOR}${WALL}${GREEN}${NC}"
 echo -e "${GREEN}└──────────────────────────────┘${NC}"
 
+
+chmod +x requirement.sh
+
+./requirement.sh
+
 echo -e "${GREEN}${CHECK_MARK} Requirements installed Successfully! ${NC}"
 echo -e "${GREEN}${CHECK_MARK} Now You Can Add 1.CF API TOKEN 2.Telegram Bot Token 3.CF Account ID 4.Admin UserID${NC}"
 echo -e "${YELLOW}${WARNING} Pay Attention To Their Order ${NC}"
