@@ -1,6 +1,7 @@
 workers.cloudflare.cyou
 216.146.25.209
 62.3.12.185
+45.142.115.59
 23.90.144.167
 47.254.66.75
 cdn-all.xn--b6gac.eu.org
