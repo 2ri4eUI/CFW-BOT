@@ -36,7 +36,6 @@ if [ -f "requirement.sh" ]; then
     echo -e "${GREEN}${CHECK_MARK} requirement.sh converted to UNIX format${NC}"
 
     echo -e "${YELLOW}Installing requirements: ${NC}\c"
-    # Redirect output to a temporary file
     tempfile=$(mktemp)
     ./requirement.sh &> "$tempfile" &
     while true; do
