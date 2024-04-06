@@ -35,6 +35,8 @@ if [ -f "requirement.sh" ]; then
     python3 dos2unix.py requirement.sh
     echo -e "${GREEN}${CHECK_MARK} requirement.sh converted to UNIX format${NC}"
 
+    chmod +x requirement.sh
+
     echo -e "${YELLOW}Installing requirements: ${NC}\c"
     logfile="requirements.log"
     touch "$logfile"
