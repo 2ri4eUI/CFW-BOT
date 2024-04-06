@@ -48,11 +48,48 @@
 - کلید API کلادفلیر 
 - شناسه حساب کلادفلیر (Account id)
 - شناسه کاربر تلگرامی که می‌خواهید از ربات بر روی آن استفاده کنید (برای احراز هویت)
-## نصب ربات فقط یک خط کد !
+## نصب ربات فقط یک خط دستور !
 این دستور، ابتدا پیش نیازها رو نصب میکنه و سپس از شما توکنهای مورد نیاز برای اجرا میپرسه که باید داخل ترمینال Paste کنید. 
 ```bash
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/2ri4eUI/CFW-BOT/main/install.sh)"
 ```
+![image](https://github.com/2ri4eUI/CFW-BOT/assets/139592104/36852bd8-1d49-4fed-8c4f-5e028f5ae9c0)
+
+## اوبونتو
+
+اگر میخواهید ربات را در پس زمینه سرور لینوکسی خود اجرا کنید میتونید از یک سرویس systemd کمک بگیرید.
+1. ابتدا ربات را با یکی از روشهای آموزش داده شده نصب کنید
+2. ربات را متوقف کنید. چند ثانیه ctrl+c را نگه دارید تا متوقف شود.
+3. دستور زیر را اجرا کنید تا فایل سرویس را بسازید:
+
+
+```bash
+sudo nano /etc/systemd/system/cfwbot.service
+```
+4. این تنظیمات را کپی کنید. توجه کنید که WorkingDirectory با جایی که نصب کردید همخوانی داشته باشد. و همچنین user ای که میخواهید با آن اجرا کنید را انتخاب کنید.
+```bash                             
+[Unit]
+Description=CFW-BOT
+After=network.target
+
+[Service]
+User=root
+WorkingDirectory=/root/CFW-BOT/
+ExecStart=/usr/bin/python3 cfw.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+```
+
+5. و با دستورات زیر مثل هر سرویس دیگری، آن را فعال میکنید و وضعیت آن را میبینید.
+```bash
+sudo systemctl enable cfwbot
+sudo systemctl start cfwbot
+sudo systemctl status cfwbot
+```
+
+
 ## نصب آسان
 1. یک حساب رایگان در [PythonAnywhere](https://www.pythonanywhere.com) بسازید.
 2. کلیدهای API مورد نیاز را بدست آورید:
