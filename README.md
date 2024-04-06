@@ -64,6 +64,43 @@ just copy and run and send tokens when it ask for them :
 ```bash
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/2ri4eUI/CFW-BOT/main/install.sh)"
 ```
+![image](https://github.com/2ri4eUI/CFW-BOT/assets/139592104/36852bd8-1d49-4fed-8c4f-5e028f5ae9c0)
+
+## Ubuntu
+if you want to run bot in background on Ubuntu you can use a systemd setup:
+1. you can install bot manually or you can use single command line instalation.
+2. terminate bot if its running using ctrl+c (hold it)
+3. create a systemd file by this command:
+
+```bash
+sudo nano /etc/systemd/system/cfwbot.service
+```
+
+4. copy paste this systemd configuartion. CHANGE WorkingDirectory if your bot path is diffrent, if your user is differnt change that as well.CTRL+X and ENTER to save.
+
+```bash                             
+[Unit]
+Description=CFW-BOT
+After=network.target
+
+[Service]
+User=root
+WorkingDirectory=/root/CFW-BOT/
+ExecStart=/usr/bin/python3 cfw.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+```
+
+5. Enable and Start Service
+   
+```bash
+sudo systemctl enable cfwbot
+sudo systemctl start cfwbot
+sudo systemctl status cfwbot
+```
+
 ## LAZY INSTALL
 1. Register for a free account on [PythonAnywhere](https://www.pythonanywhere.com).
 2. Obtain the required API keys:
