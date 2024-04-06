@@ -32,15 +32,16 @@ if [ -f "dos2unix.py" ]; then
 fi
 
 if [ -f "requirement.sh" ]; then
-
     python3 dos2unix.py requirement.sh
     echo -e "${GREEN}${CHECK_MARK} requirement.sh converted to UNIX format${NC}"
-    
 
     echo -e "${YELLOW}Installing requirements: ${NC}\c"
-    for i in {1..10}; do
+    while true; do
+        if grep -q "Wrangler installed successfully." <(tail -n 20 nohup.out); then
+            break
+        fi
         echo -e -n "${GREEN}.${NC}"
-        sleep 1  
+        sleep 10
     done
     echo -e " ${GREEN}${CHECK_MARK}${NC}"
 fi
