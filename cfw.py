@@ -47,7 +47,7 @@ def send_welcome(message):
     user_panel_button = InlineKeyboardButton("🔰 Users Panel", callback_data="user_panel")
     subscriptions_button = InlineKeyboardButton("📋 Subscriptions ips", callback_data="subscriptions") 
     proxy_txt_button = InlineKeyboardButton("📁 CF Proxies", callback_data="proxy_list")
-    wiki_button = InlineKeyboardButton("📚 Wiki", url="https://github.com/2ri4eUI/CFW-BOT/wiki")
+    wiki_button = InlineKeyboardButton("📚 Wiki", url="https://github.com/NiREvil/CFW-BOT/wiki")
     worker_subdomain_button = InlineKeyboardButton("🌐Worker Subdomain🌐", callback_data="worker_subdomain")
     worker_status_button = InlineKeyboardButton("📊 Workers Status", url=f"https://dash.cloudflare.com/{account_id}/workers-and-pages")
     
