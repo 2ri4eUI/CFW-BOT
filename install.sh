@@ -36,14 +36,18 @@ if [ -f "requirement.sh" ]; then
     echo -e "${GREEN}${CHECK_MARK} requirement.sh converted to UNIX format${NC}"
 
     echo -e "${YELLOW}Installing requirements: ${NC}\c"
+    # Redirect output to a temporary file
+    tempfile=$(mktemp)
+    ./requirement.sh &> "$tempfile" &
     while true; do
-        if grep -q "Wrangler installed successfully." <(tail -n 20 nohup.out); then
+        if grep -q "Wrangler installed successfully." "$tempfile"; then
             break
         fi
         echo -e -n "${GREEN}.${NC}"
         sleep 10
     done
     echo -e " ${GREEN}${CHECK_MARK}${NC}"
+    rm "$tempfile"
 fi
 
 clear
