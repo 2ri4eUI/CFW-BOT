@@ -152,7 +152,7 @@ npx wrangler --version
 | BOT_TOKEN            | Telegram bot token obtained from BotFather             |
 | ACCOUNT_ID           | Cloudflare account ID                                  |
 | ADMIN_USER_ID        | Numeric Telegram user ID for admin authentication      |
-| IP_API               | use this as refrence https://raw.githubusercontent.com/2ri4eUI/CFW_Worker_Sub/main/ips.txt|
+| IP_API               | use this as refrence https://raw.githubusercontent.com/NiREvil/CFW-BOT/main/ips.txt|
 
 6.remember to set cloudflare account id in workertemp.txt 
 
@@ -174,8 +174,7 @@ This bot is designed to be lightweight and inexpensive to run, making it accessi
 I want to acknowledge the work of others and clarify that the `index.js` and `subworker.js` file is not my original work. It has been edited solely to ensure compatibility with the bot. 
 
 ### Credits
-[2ri4eUI](https://github.com/2ri4eUI)
-[cmlio](https://github.com/cmliu)
+[2ri4eUI](https://github.com/2ri4eUI) \& [cmlio](https://github.com/cmliu)
 
 This project is just the beginning, and there is potential for it to evolve further. The extent to which it progresses depends on how much it is liked and used. Your feedback and contributions are appreciated!
 
