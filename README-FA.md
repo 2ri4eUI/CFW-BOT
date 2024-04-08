@@ -159,14 +159,10 @@ cd CFW-BOT && git pull && python3 cfw.py
 
 ••دقت کنید هم برای نام کاربر در مرحله add user و هم برای ساب دامین برای تمامی حروف از حروف کوچیک انگلیسی استفاده بشه، وگرنه در غیر این صورت مطابق عکس ناموفق میشه.
 
-اگر همچنان در رابطه با این مساله مشکل دارید تلگراف (https://t.me/F_NiREvil/5102) DNS رو از بخش نام دامنه ها مطالعه کنید.
 
-
-
-[مخزن شماره یک  - دوست ایرانمون](https://github.com/2ri4eUI/CFW-BOT)
-
-
-[مخزن شماره دو - دوست چینی مون](https://github.com/cmliu?tab=repositories)
+### Credits :
+[2ri4eUI](https://github.com/2ri4eUI) & [cmliu](https://github.com/cmliu)
 
 ---
+### stay in touch 
 [![Telegram Badge](https://img.shields.io/badge/Telegram-Profile-informational?style=flat&logo=telegram&logoColor=white&color=1CA2F1)](https://t.me/F_NiREvil)
