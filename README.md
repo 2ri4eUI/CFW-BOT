@@ -1,8 +1,10 @@
 ### [![Lang_farsi](https://user-images.githubusercontent.com/125398461/234186932-52f1fa82-52c6-417f-8b37-08fe9250a55f.png) فارسی](README-FA.md) [ENGLISH](README.md)
-# CFW-BOT V0.04
-Cloudflare Woker Bot ! No servers needed, just pure Xray link creation, all running smoothly on PythonAnywhere. a Shortcut to internet freedom! ✨"
+$$\color{silver} \Huge \text{\R $\sum{\vil_c = \mathbb{N\infty}}$}$$
 
-![image](https://github.com/NiREvil/CFW-BOT/assets/126243832/da87c0a1-8012-432e-8377-141c9444210c)
+# CFW-BOT V0.04
+Cloudflare Woker Manager ! No servers needed, just pure Xray link creation, all running smoothly on PythonAnywhere. a Shortcut to internet freedom! ✨"
+
+![image](https://github.com/NiREvil/CFW-BOT/assets/126243832/da87c0a1-8012-432e-8377-141c9444210c) 
 
 ## version 0.02 
 <details>
@@ -59,21 +61,21 @@ This Python Telegram bot, powered by Cloudflare's Workers, makes generating Xray
 - **User Management**: Create and manage multiple users with ease. Each user has access to their generated links at all times.
 - **Efficient Deployment**: Leveraging Wrangler, the bot's worker script can be easily deployed on Cloudflare, ensuring reliability and scalability.
 
-## Prerequisites
+### Prerequisites
 - One domain registered on Cloudflare
 - Access to Cloudflare account
 - Telegram Bot token (available from Telegram's BotFather)
 - Cloudflare API key (generate one from Cloudflare dashboard)
 - Account ID of your Cloudflare account
 - User ID of the Telegram account you want to use the bot on (for authentication)
-## Single Command install | BETA 
+### Single Command install | BETA 
 i will release the final version soon!
 just copy and run and send tokens when it ask for them :
 
 ```bash
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/NiREvil/CFW-BOT/main/install.sh)"
 ```
-## LAZY INSTALL
+### LAZY INSTALL
 1. Register for a free account on [PythonAnywhere](https://www.pythonanywhere.com).
 2. Obtain the required API keys:
    - Telegram Bot token from BotFather
@@ -114,7 +116,7 @@ you can run this to solve the issue:
  ```bash
  python3 cfw.py
  ```
-## ADVANCED INSTALL
+### ADVANCED INSTALL
 
 1. install requirements:
  ```bash
@@ -155,7 +157,7 @@ npx wrangler --version
 6.remember to set cloudflare account id in workertemp.txt 
 
 
-## How To Use the Bot
+### How To Use the Bot
 At this stage, you have two options for entering the IP address in the CFW-BOT:
 
 1- Using a Cloudflare clean IP: This type of IP will make you have good download speed and ping, but sites that use Cloudflare's CDN will not load for you. The method of finding a clean IP is explained here. [link to article](https://github.com/NiREvil/CFW-BOT/blob/main/CFW_Worker_Sub.md)
@@ -163,16 +165,17 @@ At this stage, you have two options for entering the IP address in the CFW-BOT:
 2- Using a proxyIP: This type of IP may have about ten percent lower speed compared to Cloudflare IP's, and it may be filtered after one or two months, forcing you to change it. However, the advantage is that all sites, even those behind Cloudflare, open easily and without problems. I have written here an easy and fast way to find proxyIP. [link to article](https://github.com/NiREvil/vless/blob/main/sub/ProxyIP.md)
 
 
-## Note
+### Note
 This bot is designed to be lightweight and inexpensive to run, making it accessible for everyone. Enjoy creating Xray links hassle-free!
 
 
-## Disclaimer
+### Disclaimer
 
 I want to acknowledge the work of others and clarify that the `index.js` and `subworker.js` file is not my original work. It has been edited solely to ensure compatibility with the bot. 
 
-## HUGE THANKS TO 
-https://github.com/cmliu for creating these workers
+### Credits
+[2ri4eUI](https://github.com/2ri4eUI)
+[cmlio](https://github.com/cmliu)
 
 This project is just the beginning, and there is potential for it to evolve further. The extent to which it progresses depends on how much it is liked and used. Your feedback and contributions are appreciated!
 
