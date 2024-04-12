@@ -13,6 +13,10 @@ let addresses = [
 	"creativecommons.org:2087#CFW",
 	"go.inmobi.com:2096#CFW-BOT",
 	"creativecommons.org:2096#CFW",
+	"go.inmobi.com:2083#CFW-BOT",
+	"creativecommons.org:2083#CFW",
+	"go.inmobi.com:2053#CFW-BOT",
+	"creativecommons.org:2053#CFW",
 	
 ];
 
@@ -413,7 +417,7 @@ export default {
 				if(proxyhosts && (host.includes('.workers.dev') || host.includes('pages.dev'))) {
 					最终路径 = `/${host}${path}`;
 					伪装域名 = proxyhosts[Math.floor(Math.random() * proxyhosts.length)];
-					节点备注 = `${EndPS} NI `;
+					节点备注 = `${EndPS} NIREvil `;
 				}
 				const vlessLink = `vless://${uuid}@${address}:${port}?encryption=none&security=tls&sni=${伪装域名}&fp=random&type=ws&host=${伪装域名}&path=${encodeURIComponent(最终路径)}#${encodeURIComponent(addressid + 节点备注)}`;
 			
