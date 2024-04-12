@@ -5,19 +5,18 @@ let mytoken= 'username';//快速订阅访问入口, 留空则不启动快速订�
 
 // 设置优选地址，不带端口号默认443，不支持非TLS订阅生成
 let addresses = [
-	"go.inmobi.com#CFW-BOT",
-	"creativecommons.org#CFW",
-	"go.inmobi.com:8443#CFW-BOT",
-	"creativecommons.org:8443#CFW",
-	"go.inmobi.com:2087#CFW-BOT",
-	"creativecommons.org:2087#CFW",
-	"go.inmobi.com:2096#CFW-BOT",
-	"creativecommons.org:2096#CFW",
-	"go.inmobi.com:2083#CFW-BOT",
-	"creativecommons.org:2083#CFW",
-	"go.inmobi.com:2053#CFW-BOT",
-	"creativecommons.org:2053#CFW",
-	
+	"time.is:2087#CFW-BOT 1",
+	"zula.ir:2087#CFW-BOT 2",
+	"time.is:2096#CFW-BOT 3",
+	"zula.ir:2096#CFW-BOT 4",
+	"go.inmobi.com#CFW-BOT 5",
+	"creativecommons.org#CFW-BOT 6",
+	"go.inmobi.com:8443#CFW-BOT 7",
+	"creativecommons.org:8443#CFW-BOT 8",
+	"go.inmobi.com:2087#CFW-BOT 9",
+	"creativecommons.org:2087#CFW-BOT 10",
+	"go.inmobi.com:2096#CFW-BOT 11",
+	"creativecommons.org:2096#CFW-BOT 12",
 ];
 
 // 设置优选地址api接口
