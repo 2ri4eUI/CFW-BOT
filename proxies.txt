@@ -1,9 +1,10 @@
-workers.cloudflare.cyou
+152.69.178.16
+138.3.254.39
+152.67.151.178
+23.90.144.167
+5.29.194.1
 216.146.25.209
 62.3.12.185
 45.142.115.59
-23.90.144.167
 47.254.66.75
 cdn-all.xn--b6gac.eu.org
-ircpipproxy.duckdns.org
-cdn.xn--b6gac.eu.org
