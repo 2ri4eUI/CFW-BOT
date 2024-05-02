@@ -5,9 +5,9 @@ let mytoken= 'username';//快速订阅访问入口, 留空则不启动快速订�
 
 // 设置优选地址，不带端口号默认443，不支持非TLS订阅生成
 let addresses = [
-	"time.is:2087#CFW-BOT 1",
+	"www.visa.com.sg:2087#CFW-BOT 1",
 	"zula.ir:2087#CFW-BOT 2",
-	"time.is:2096#CFW-BOT 3",
+	"www.visa.com.sg:2096#CFW-BOT 3",
 	"zula.ir:2096#CFW-BOT 4",
 	"go.inmobi.com#CFW-BOT 5",
 	"creativecommons.org#CFW-BOT 6",
@@ -17,6 +17,7 @@ let addresses = [
 	"creativecommons.org:2087#CFW-BOT 10",
 	"go.inmobi.com:2096#CFW-BOT 11",
 	"creativecommons.org:2096#CFW-BOT 12",
+	
 ];
 
 // 设置优选地址api接口
@@ -303,7 +304,7 @@ export default {
 					headers: { 'content-type': 'text/plain; charset=utf-8' },
 				});
 			}
-		} else if (userAgent.includes('sing-box') || userAgent.includes('singbox') || (format === 'singbox' && !userAgent.includes('subconverter'))){
+		} else if ( (userAgent.includes('sing-box') || userAgent.includes('singbox') || (format === 'singbox' && !userAgent.includes('subconverter')) ) && !userAgent.includes('cf-workers-sub')){
 			const subconverterUrl = `https://${subconverter}/sub?target=singbox&url=${encodeURIComponent(request.url)}&insert=false&config=${encodeURIComponent(subconfig)}&emoji=true&list=false&tfo=false&scv=true&fdn=false&sort=false&new_name=true`;
 
 			try {
@@ -416,7 +417,7 @@ export default {
 				if(proxyhosts && (host.includes('.workers.dev') || host.includes('pages.dev'))) {
 					最终路径 = `/${host}${path}`;
 					伪装域名 = proxyhosts[Math.floor(Math.random() * proxyhosts.length)];
-					节点备注 = `${EndPS} REv `;
+					节点备注 = `${EndPS} REv`;
 				}
 				const vlessLink = `vless://${uuid}@${address}:${port}?encryption=none&security=tls&sni=${host}&fp=randomized&type=ws&host=${host}&path=%2F%3Fed%3D2560#${encodeURIComponent(addressid)}`;
 			
