@@ -1,5 +1,5 @@
-name = "nameofworker"
-account_id = "cloudflare_id"
+name = "test"
+account_id = "37b9c56c3e8ac0ab39ca572dd128d748"
 workers_dev = true
 compatibility_date = "2024-02-17"
 
