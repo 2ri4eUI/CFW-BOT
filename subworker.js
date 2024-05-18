@@ -1,9 +1,9 @@
 
-// 部署完成后在网址后面加上这个，获取订阅器默认节点，/auto
+// After the deployment is completed, add this after the URL to obtain the default node of the subscriber./auto
 
-let mytoken= 'username';//快速订阅访问入口, 留空则不启动快速订阅
+let mytoken= 'username';
 
-// 设置优选地址，不带端口号默认443，不支持非TLS订阅生成
+
 let addresses = [
 	"www.visa.com.sg:2087#CFW-BOT 1",
 	"zula.ir:2087#CFW-BOT 2",
@@ -20,17 +20,17 @@ let addresses = [
 	
 ];
 
-// 设置优选地址api接口
-// let addressesapi = ['https://raw.githubusercontent.com/cmliu/WorkerVless2sub/main/addressesapi.txt'];
+// addresses api
+// let addressesapi = ['https://raw.githubusercontent.com/NiREvil/CFW-BOT/main/ips.txt'];
 let addressesapi = ['addressapi'];
 
 let DLS = 4;//速度下限
 let addressescsv = [
-	//'https://raw.githubusercontent.com/cmliu/WorkerVless2sub/main/addressescsv.csv' //iptest测速结果文件。
+	//'https://raw.githubusercontent.com/cmliu/WorkerVless2sub/main/addressescsv.csv' //iptest。
 ];
 
-let subconverter = "api.v1.mk"; //在线订阅转换后端，目前使用肥羊的订阅转换功能。支持自建psub 可自行搭建https://github.com/bulianglin/psub
-let subconfig = "https://raw.githubusercontent.com/NiREvil/workers-cloudflare/main/Other/ruleset.ini"; //订阅配置文件
+let subconverter = "api.v1.mk"; //The online subscription conversion backend currently uses Feiyang's subscription conversion function. Supports self-built psub and can be built by yourselfhttps://github.com/bulianglin/psub
+let subconfig = "https://raw.githubusercontent.com/NiREvil/workers-cloudflare/main/Other/ruleset.ini"; 
 
 let link = '';
 let edgetunnel = 'ed';
@@ -45,11 +45,11 @@ let CMproxyIPs = [
 ];
 let BotToken ='';
 let ChatID =''; 
-let proxyhosts = [//本地代理域名池
-	//'ppfv2tl9veojd-maillazy.pages.dev',
+let proxyhosts = [
+
 ];
-let proxyhostsURL = 'https://raw.githubusercontent.com/cmliu/CFcdnVmess2sub/main/proxyhosts';//在线代理域名池URL
-let EndPS = '';//节点名备注内容
+let proxyhostsURL = [];
+let EndPS = '';
 
 let FileName = 'WorkerVless2sub';
 let SUBUpdateTime = 6; 
@@ -131,28 +131,28 @@ async function getAddressescsv() {
 				continue;
 			}
 		
-			const text = await response.text();// 使用正确的字符编码解析文本内容
+			const text = await response.text();
 			const lines = text.split('\n');
 		
-			// 检查CSV头部是否包含必需字段
+			
 			const header = lines[0].split(',');
 			const tlsIndex = header.indexOf('TLS');
 			const speedIndex = header.length - 1; // 最后一个字段
 		
-			const ipAddressIndex = 0;// IP地址在 CSV 头部的位置
-			const portIndex = 1;// 端口在 CSV 头部的位置
-			const dataCenterIndex = tlsIndex + 1; // 数据中心是 TLS 的后一个字段
+			const ipAddressIndex = 0;
+			const portIndex = 1;
+			const dataCenterIndex = tlsIndex + 1; 
 		
 			if (tlsIndex === -1) {
 				console.error('CSV文件缺少必需的字段');
 				continue;
 			}
 		
-			// 从第二行开始遍历CSV行
+			
 			for (let i = 1; i < lines.length; i++) {
 				const columns = lines[i].split(',');
 		
-				// 检查TLS是否为"TRUE"且速度大于DLS
+				
 				if (columns[tlsIndex].toUpperCase() === 'TRUE' && parseFloat(columns[speedIndex]) > DLS) {
 					const ipAddress = columns[ipAddressIndex];
 					const port = columns[portIndex];
@@ -271,7 +271,7 @@ export default {
 			if (!path || path.trim() === '') {
 				path = '/?ed=2560';
 			} else {
-				// 如果第一个字符不是斜杠，则在前面添加一个斜杠
+				
 				path = (path[0] === '/') ? path : '/' + path;
 			}
 		}
@@ -338,12 +338,12 @@ export default {
 					
 						if (!response.ok) {
 							console.error('获取地址时出错:', response.status, response.statusText);
-							return; // 如果有错误，直接返回
+							return; 
 						}
 					
 						const text = await response.text();
 						const lines = text.split('\n');
-						// 过滤掉空行或只包含空白字符的行
+						
 						const nonEmptyLines = lines.filter(line => line.trim() !== '');
 					
 						proxyhosts = proxyhosts.concat(nonEmptyLines);
@@ -351,7 +351,7 @@ export default {
 						console.error('获取地址时出错:', error);
 					}
 				}
-				// 使用Set对象去重
+				
 				proxyhosts = [...new Set(proxyhosts)];
 			}
 			
@@ -360,7 +360,7 @@ export default {
 			addresses = addresses.concat(newAddressesapi);
 			addresses = addresses.concat(newAddressescsv);
 			
-			// 使用Set对象去重
+			
 			const uniqueAddresses = [...new Set(addresses)];
 			
 			const responseBody = uniqueAddresses.map(address => {
@@ -388,24 +388,24 @@ export default {
 				}
 				
 				if (edgetunnel.trim() === 'cmliu' && RproxyIP.trim() === 'true') {
-					// 将addressid转换为小写
+					
 					let lowerAddressid = addressid.toLowerCase();
-					// 初始化找到的proxyIP为null
+					
 					let foundProxyIP = null;
 				
-					// 遍历CMproxyIPs数组查找匹配项
+					
 					for (let item of CMproxyIPs) {
 						if (lowerAddressid.includes(item.type.toLowerCase())) {
 							foundProxyIP = item.proxyIP;
-							break; // 找到匹配项，跳出循环
+							break; 
 						}
 					}
 				
 					if (foundProxyIP) {
-						// 如果找到匹配的proxyIP，赋值给path
+						
 						path = `/proxyIP=${foundProxyIP}`;
 					} else {
-						// 如果没有找到匹配项，随机选择一个proxyIP
+						
 						const randomProxyIP = proxyIPs[Math.floor(Math.random() * proxyIPs.length)];
 						path = `/proxyIP=${randomProxyIP}`;
 					}
@@ -424,8 +424,8 @@ export default {
 				return vlessLink;
 			}).join('\n');
 			
-			const combinedContent = responseBody + '\n' + link; // 合并内容
-			const base64Response = btoa(combinedContent); // 重新进行 Base64 编码
+			const combinedContent = responseBody + '\n' + link; 
+			const base64Response = btoa(combinedContent);
 
 
 			const response = new Response(base64Response, {
