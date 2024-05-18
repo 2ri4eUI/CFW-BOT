@@ -8,10 +8,10 @@ let userID = 'uuid';
 
 let proxyIP = 'newproxy';
 
-//let sub = '';// 留空则显示原版内容
-let sub = 'subworkerhost';// 内置优选订阅生成器，可自行搭建 https://github.com/cmliu/WorkerVless2sub
-let subconverter = 'api.v1.mk';// clash订阅转换后端，目前使用肥羊的订阅转换功能。支持自建psub 可自行搭建https://github.com/bulianglin/psub
-let subconfig = "https://raw.githubusercontent.com/cmliu/ACL4SSR/main/Clash/config/ACL4SSR_Online_Full_MultiMode.ini"; //订阅配置文件
+//let sub = '';
+let sub = 'subworkerhost';// https://github.com/cmliu/WorkerVless2sub
+let subconverter = 'api.v1.mk';// The online subscription conversion backend currently uses Feiyang's subscription conversion function. Supports self-built psub and can be built by yourselfhttps://github.com/bulianglin/psub
+let subconfig = "https://raw.githubusercontent.com/cmliu/ACL4SSR/main/Clash/config/ACL4SSR_Online_Full_MultiMode.ini";
 // The user name and password do not contain special characters
 // Setting the address will ignore proxyIP
 // Example:  user:pass@host:port  or  host:port
@@ -24,7 +24,7 @@ if (!isValidUUID(userID)) {
 let parsedSocks5Address = {}; 
 let enableSocks = false;
 
-// 虚假uuid和hostname，用于发送给配置生成服务
+
 let fakeUserID = generateUUID();
 let fakeHostName = generateRandomString();
 let tls = true;
