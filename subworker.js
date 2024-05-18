@@ -5,18 +5,18 @@ let mytoken= 'username';
 
 
 let addresses = [
-	"www.visa.com.sg:2087#CFW-BOT 1",
-	"zula.ir:2087#CFW-BOT 2",
-	"www.visa.com.sg:2096#CFW-BOT 3",
-	"zula.ir:2096#CFW-BOT 4",
-	"go.inmobi.com#CFW-BOT 5",
-	"creativecommons.org#CFW-BOT 6",
-	"go.inmobi.com:8443#CFW-BOT 7",
-	"creativecommons.org:8443#CFW-BOT 8",
-	"go.inmobi.com:2087#CFW-BOT 9",
-	"creativecommons.org:2087#CFW-BOT 10",
-	"go.inmobi.com:2096#CFW-BOT 11",
-	"creativecommons.org:2096#CFW-BOT 12",
+	"www.visa.com.sg:2087#CFW-1",
+	"zula.ir:2087#CFW-2",
+	"www.visa.com.sg:2096#CFW-3",
+	"zula.ir:2096#CFW-4",
+	"go.inmobi.com#CFW-5",
+	"creativecommons.org#CFW-6",
+	"go.inmobi.com:8443#CFW-7",
+	"creativecommons.org:8443#CFW-8",
+	"go.inmobi.com:2087#CFW-",
+	"creativecommons.org:2087#CFW-10",
+	"go.inmobi.com:2096#CFW-11",
+	"creativecommons.org:2096#CFW-12",
 	
 ];
 
