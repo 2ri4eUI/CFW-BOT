@@ -7,14 +7,14 @@ let mytoken= 'username';
 let addresses = [
 	"www.visa.com.sg:2087#CFW-1",
 	"zula.ir:2087#CFW-2",
-	"www.visa.com.sg:2096#CFW-3",
-	"zula.ir:2096#CFW-4",
+	"discord.com:2096#CFW-3",
+	"www.wto.org:2096#CFW-4",
 	"go.inmobi.com#CFW-5",
 	"creativecommons.org#CFW-6",
-	"go.inmobi.com:8443#CFW-7",
-	"creativecommons.org:8443#CFW-8",
-	"go.inmobi.com:2087#CFW-",
-	"creativecommons.org:2087#CFW-10",
+	"ip.sb:8443#CFW-7",
+	"time.cloudflare.com:8443#CFW-8",
+	"fbi.gov:2087#CFW-",
+	"icook.hk:2087#CFW-10",
 	"go.inmobi.com:2096#CFW-11",
 	"creativecommons.org:2096#CFW-12",
 	
@@ -41,7 +41,7 @@ let proxyIPs = [
 	'proxyip.vultr.fxxk.dedyn.io',
 ];
 let CMproxyIPs = [
-	{ proxyIP: "proxyip.fxxk.dedyn.io", type: "HK" },
+	{ proxyIP: "cdn-all.xn--b6gac.eu.org", type: "HK" },
 ];
 let BotToken ='';
 let ChatID =''; 
@@ -419,7 +419,7 @@ export default {
 					伪装域名 = proxyhosts[Math.floor(Math.random() * proxyhosts.length)];
 					节点备注 = `${EndPS} RE`;
 				}
-				const vlessLink = `vless://${uuid}@${address}:${port}?encryption=none&security=tls&sni=${伪装域名}&fp=random&type=ws&host=${伪装域名}&path=${encodeURIComponent(最终路径)}#${encodeURIComponent(addressid + 节点备注)}`;
+				const vlessLink = `vless://${uuid}@${address}:${port}?encryption=none&security=tls&sni=${host}&fp=random&type=ws&host=${host}&path=%2F%3Fed%3D2560#${encodeURIComponent(addressid)}`;
 			
 				return vlessLink;
 			}).join('\n');
