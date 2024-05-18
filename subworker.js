@@ -48,7 +48,7 @@ let ChatID ='';
 let proxyhosts = [
 
 ];
-let proxyhostsURL = [];
+let proxyhostsURL = 'https://raw.githubusercontent.com/cmliu/CFcdnVmess2sub/main/proxyhosts';
 let EndPS = '';
 
 let FileName = 'WorkerVless2sub';
