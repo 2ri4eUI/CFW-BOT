@@ -5,19 +5,16 @@ let mytoken= 'username';
 
 
 let addresses = [
-	"www.visa.com.sg:2087#CFW-1",
-	"zula.ir:2087#CFW-2",
-	"discord.com:2096#CFW-3",
-	"www.wto.org:2096#CFW-4",
-	"go.inmobi.com#CFW-5",
-	"creativecommons.org#CFW-6",
-	"ip.sb:8443#CFW-7",
-	"time.cloudflare.com:8443#CFW-8",
-	"fbi.gov:2087#CFW-",
-	"icook.hk:2087#CFW-10",
-	"go.inmobi.com:2096#CFW-11",
-	"creativecommons.org:2096#CFW-12",
-	
+	"sky.rethinkdns.com#CFW-1",
+	"sky.rethinkdns.com:2053#CFW-2",
+	"icook.hk:2083#CFW-3",
+	"icook.hk:2087#CFW-4",
+	"go.inmobi.com:2096#CFW-5",
+	"creativecommons.org:443#CFW-6",
+	"188.114.96.3:8443#CFW-7",
+	"188.114.96.6:2083#CFW-8",
+	"188.114.97.3:2087#CFW-",
+	"188.114.97.6:2096#CFW-10",
 ];
 
 // addresses api
