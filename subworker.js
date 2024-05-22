@@ -5,16 +5,16 @@ let mytoken= 'username';
 
 
 let addresses = [
-	"sky.rethinkdns.com#CFW-1",
-	"sky.rethinkdns.com:2053#CFW-2",
-	"icook.hk:2083#CFW-3",
-	"icook.hk:2087#CFW-4",
-	"go.inmobi.com:2096#CFW-5",
-	"creativecommons.org:443#CFW-6",
-	"188.114.96.3:8443#CFW-7",
-	"188.114.96.6:2083#CFW-8",
-	"188.114.97.3:2087#CFW-",
-	"188.114.97.6:2096#CFW-10",
+	"sky.rethinkdns.com#✡️ CFW -1",
+	"sky.rethinkdns.com:2053#✡️ CFW -2",
+	"icook.hk:2083#✡️ CFW -3",
+	"icook.hk:2087#✡️ CFW -4",
+	"go.inmobi.com:2096#✡️ CFW -5",
+	"creativecommons.org:443#✡️ CFW -6",
+	"188.114.96.3:8443#✡️ CFW -7",
+	"188.114.96.6:2083#✡️ CFW -8",
+	"zula.ir:2087#✡️ CFW -9",
+	"zula.ir:2096#✡️ CFW -10",
 ];
 
 // addresses api
