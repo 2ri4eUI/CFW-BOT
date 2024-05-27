@@ -5,23 +5,23 @@ let mytoken= 'username';
 
 
 let addresses = [
-	"sky.rethinkdns.com#✡️ CFW -1",
-	"sky.rethinkdns.com:2053#✡️ CFW -2",
-	"icook.hk:2083#✡️ CFW -3",
-	"icook.hk:2087#✡️ CFW -4",
-	"go.inmobi.com:2096#✡️ CFW -5",
-	"creativecommons.org:443#✡️ CFW -6",
-	"188.114.96.3:8443#✡️ CFW -7",
-	"188.114.96.6:2083#✡️ CFW -8",
-	"zula.ir:2087#✡️ CFW -9",
-	"zula.ir:2096#✡️ CFW -10",
+	"icook.hk:2083#✡️CFW -1",
+	"cdnjs.com:8443#✡️CFW -2",
+	"zula.ir:443#✡️CFW -3",
+	"sky.rethinkdns.com:2053#✡️CFW -4",
+	"www.speedtest.net:443#✡️CFW -5",
+	"time.cloudflare.com:2053#✡️CFW -6",
+	"go.inmobi.com:2096#✡️CFW -7",
+	"creativecommons.org:2087#✡️CFW -8",
+	"horsefucker.pages.dev:8443#✡️CFW -9",
+	"holyfuck.xcdi.workers.dev:2083#✡️CFW -10",
 ];
 
 // addresses api
 // let addressesapi = ['https://raw.githubusercontent.com/NiREvil/CFW-BOT/main/ips.txt'];
 let addressesapi = ['addressapi'];
 
-let DLS = 4;//速度下限
+let DLS = 4;
 let addressescsv = [
 	//'https://raw.githubusercontent.com/cmliu/WorkerVless2sub/main/addressescsv.csv' //iptest。
 ];
@@ -33,9 +33,9 @@ let link = '';
 let edgetunnel = 'ed';
 let RproxyIP = 'false';
 let proxyIPs = [
-	'proxyip.aliyun.fxxk.dedyn.io',
-	'proxyip.multacom.fxxk.dedyn.io',
-	'proxyip.vultr.fxxk.dedyn.io',
+	'usa.revil.link',
+	'ni.radically.pro',
+	'oracle.radically.pro',
 ];
 let CMproxyIPs = [
 	{ proxyIP: "cdn-all.xn--b6gac.eu.org", type: "HK" },
