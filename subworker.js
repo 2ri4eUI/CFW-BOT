@@ -33,12 +33,12 @@ let link = '';
 let edgetunnel = 'ed';
 let RproxyIP = 'false';
 let proxyIPs = [
-	'usa.revil.link',
-	'ni.radically.pro',
-	'oracle.radically.pro',
+	'proxyip.aliyun.fxxk.dedyn.io',
+	'proxyip.multacom.fxxk.dedyn.io',
+	'proxyip.vultr.fxxk.dedyn.io',
 ];
 let CMproxyIPs = [
-	{ proxyIP: "cdn-all.xn--b6gac.eu.org", type: "HK" },
+	{ proxyIP: "proxyip.fxxk.dedyn.io", type: "HK" },
 ];
 let BotToken ='';
 let ChatID =''; 
@@ -190,7 +190,7 @@ export default {
 		if (mytoken !== '' && url.pathname.includes(mytoken)) {
 			host = env.HOST || 'usersubdomain';
 			uuid = env.UUID || 'uuid';
-			path = env.PATH || "/?ed=2560";
+			path = env.PATH || "/?ed=2408";
 			edgetunnel = env.ED || edgetunnel;
 			RproxyIP = env.RPROXYIP || RproxyIP;
 
@@ -266,7 +266,7 @@ export default {
 			}
 			
 			if (!path || path.trim() === '') {
-				path = '/?ed=2560';
+				path = '/?ed=2408';
 			} else {
 				
 				path = (path[0] === '/') ? path : '/' + path;
@@ -412,11 +412,12 @@ export default {
 				let 最终路径 = path ;
 				let 节点备注 = EndPS ;
 				if(proxyhosts && (host.includes('.workers.dev') || host.includes('pages.dev'))) {
-					最终路径 = `/${host}${path}`;
-					伪装域名 = proxyhosts[Math.floor(Math.random() * proxyhosts.length)];
+					最终路径 = `/${path}`;
+					伪装域名 = `${host}`;
 					节点备注 = `${EndPS} RE`;
+					sni = 伪装域名;
 				}
-				const vlessLink = `vless://${uuid}@${address}:${port}?encryption=none&security=tls&sni=${host}&fp=random&type=ws&host=${host}&path=%2F%3Fed%3D2560#${encodeURIComponent(addressid)}`;
+				const vlessLink = `vless://${uuid}@${address}:${port}?encryption=none&security=tls&sni=${sni}&alpn=http%2F1.1&fp=randomized&type=ws&host=${伪装域名}&path=${encodeURIComponent(最终路径)}#${encodeURIComponent(addressid)}`;
 			
 				return vlessLink;
 			}).join('\n');
