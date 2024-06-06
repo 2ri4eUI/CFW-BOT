@@ -9,7 +9,7 @@ let userID = 'uuid';
 let proxyIP = 'newproxy';
 
 //let sub = '';
-let sub = 'subworkerhost';// https://github.com/cmliu/WorkerVless2sub
+let sub = 'subworkerhost';
 let subconverter = 'api.v1.mk';// The online subscription conversion backend currently uses Feiyang's subscription conversion function. Supports self-built psub and can be built by yourselfhttps://github.com/bulianglin/psub
 let subconfig = "https://raw.githubusercontent.com/cmliu/ACL4SSR/main/Clash/config/ACL4SSR_Online_Full_MultiMode.ini";
 // The user name and password do not contain special characters
@@ -184,7 +184,7 @@ async function vlessOverWSHandler(request) {
 					return;
 				}
 			}
-			// ["version", "附加信息长度 N"]
+			
 			const vlessResponseHeader = new Uint8Array([vlessVersion[0], 0]);
 			const rawClientData = chunk.slice(rawDataIndex);
 
@@ -850,7 +850,7 @@ function generateUUID() {
  * @returns {Promise<string>}
  */
 async function getVLESSConfig(userID, hostName, sub, userAgent, RproxyIP) {
-	// 如果sub为空，则显示原始内容
+	
 	if (!sub || sub === '') {
 		const vlessMain = `vless://${userID}@${hostName}:443?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2048#${hostName}`;
   
