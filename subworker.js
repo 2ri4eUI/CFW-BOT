@@ -5,16 +5,17 @@ let mytoken= 'username';
 
 
 let addresses = [
-	"icook.hk:2083#✡️CFW -1",
-	"cdnjs.com:8443#✡️CFW -2",
-	"zula.ir:443#✡️CFW -3",
-	"sky.rethinkdns.com:2053#✡️CFW -4",
-	"www.speedtest.net:443#✡️CFW -5",
-	"time.cloudflare.com:2053#✡️CFW -6",
-	"go.inmobi.com:2096#✡️CFW -7",
-	"creativecommons.org:2087#✡️CFW -8",
-	"horsefucker.pages.dev:8443#✡️CFW -9",
-	"holyfuck.xcdi.workers.dev:2083#✡️CFW -10",
+	"icook.hk:2083#CFW -1",
+	"zula.ir:443#CFW -2",
+	"vista.com:2053#CFW -3",
+	"www.csgo.com:8443#CFW -4",
+	"sky.rethinkdns.com:2053#CFW -5",
+	"www.speedtest.net:443#CFW -6",
+	"time.cloudflare.com:2053#CFW -7",
+	"go.inmobi.com:2053#CFW -8",
+	"creativecommons.org:443#CFW -9",
+	"time.cloudflare.com:8443#CFW -10",
+	"www.csgo.com:2083#CFW -10",
 ];
 
 // addresses api
@@ -26,8 +27,8 @@ let addressescsv = [
 	//'https://raw.githubusercontent.com/cmliu/WorkerVless2sub/main/addressescsv.csv' //iptest。
 ];
 
-let subconverter = "api.v1.mk"; //The online subscription conversion backend currently uses Feiyang's subscription conversion function. Supports self-built psub and can be built by yourselfhttps://github.com/bulianglin/psub
-let subconfig = "https://raw.githubusercontent.com/NiREvil/workers-cloudflare/main/Other/ruleset.ini"; 
+let subconverter = "subapi-loadbalancing.pages.dev"; //The online subscription conversion backend currently uses Feiyang's subscription conversion function. Supports self-built psub and can be built by yourselfhttps://github.com/bulianglin/psub
+let subconfig = "https://raw.githubusercontent.com/cmliu/ACL4SSR/main/Clash/config/ACL4SSR_Online_Full_MultiMode.ini"; 
 
 let link = '';
 let edgetunnel = 'ed';
